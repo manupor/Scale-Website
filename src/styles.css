@@ -1,0 +1,309 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --paper: #F7F5EF;
+  --ink: #0E0E0E;
+  --grey: #8A93A0;
+  --teal: #7BA7C7;
+  --accent: #D4C5A9;
+  --night: #030712;
+  --muted: rgba(247, 245, 239, 0.72);
+  --line: rgba(255, 255, 255, 0.18);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --pad: clamp(1rem, 2.5vw, 3rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--night);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--night);
+  color: var(--paper);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* SCALE mark: three ascending bars, growth by structure */
+.scale-mark {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  height: 1.3rem;
+}
+
+.scale-mark i {
+  width: 0.26rem;
+  background: currentColor;
+}
+
+.scale-mark i:nth-child(1) {
+  height: 40%;
+  opacity: 0.55;
+}
+
+.scale-mark i:nth-child(2) {
+  height: 70%;
+  opacity: 0.8;
+}
+
+.scale-mark i:nth-child(3) {
+  height: 100%;
+  background: var(--accent);
+}
+
+/* Diagnosis panel ------------------------------------------------------- */
+.contact-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear 0.65s;
+}
+
+.contact-panel.is-open {
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.contact-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(4, 10, 10, 0.6);
+  opacity: 0;
+  backdrop-filter: blur(0.6rem);
+  transition: opacity 0.55s ease;
+}
+
+.contact-panel.is-open .contact-backdrop {
+  opacity: 1;
+}
+
+.contact-sheet {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(46rem, 92vw);
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--paper);
+  color: var(--ink);
+  transform: translateX(100%);
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.contact-panel.is-open .contact-sheet {
+  transform: translateX(0);
+}
+
+.contact-sheet :focus-visible {
+  outline-color: var(--teal);
+}
+
+.contact-close {
+  align-self: flex-end;
+  min-height: 2.75rem;
+  padding: 0 0.5rem;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.contact-kicker {
+  margin-top: 2rem;
+  color: var(--grey);
+  font-size: 0.75rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.contact-sheet h2 {
+  margin: 1.2rem 0;
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.contact-sheet h2 em {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.contact-sheet>p {
+  max-width: 30rem;
+  margin: 0 0 2rem;
+  color: var(--grey);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.diagnosis-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem 1.25rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.field-full,
+.consent,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(14, 14, 14, 0.4);
+  border-radius: 0.3rem;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--ink);
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--grey);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.consent input {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0.1rem 0 0;
+  accent-color: var(--teal);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-submit {
+  min-height: 3.25rem;
+  padding: 0.9rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.form-submit:hover {
+  background: var(--teal);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.form-status {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 768px) {
+  .contact-sheet {
+    width: 100%;
+    padding: 1.5rem 1.15rem 2rem;
+  }
+
+  .diagnosis-form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-submit {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
