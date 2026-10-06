@@ -30,10 +30,9 @@ export default function Method({ onContact }) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: stage,
-          pin: viewport,
           scrub: 0.6,
           start: 'top top',
-          end: `+=${Math.max(4000, cards.length * 950)}`,
+          end: () => `+=${stage.offsetHeight - viewport.offsetHeight}`,
           snap: { snapTo: 1 / (cards.length - 1), duration: { min: 0.15, max: 0.4 }, ease: 'power2.out' },
           onUpdate: (self) => {
             const idx = Math.min(cards.length - 1, Math.round(self.progress * (cards.length - 1)))
