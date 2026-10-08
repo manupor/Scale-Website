@@ -3,22 +3,135 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#030303" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f2ede3" />
   <meta name="description"
-    content="SCALE, firma internacional con base en Miami. Alineamos estrategia, marca, adquisición, ventas, datos y tecnología para marcas de lujo y agentes inmobiliarios." />
+    content="SCALE, firma internacional de desarrollo empresarial con base en Miami. Estrategia, marca, ventas, datos y tecnología cultivados como un solo sistema." />
   <title>SCALE | Su marca no se improvisa. Se cultiva.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..900&family=Instrument+Serif:ital@1&display=swap"
     rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <div id="loader"><i></i></div>
+  <div id="sizer"></div>
+  <canvas id="gl"></canvas>
+
+  <svg id="maskLayer" aria-hidden="true">
+    <defs>
+      <mask id="flatMask" maskUnits="userSpaceOnUse">
+        <rect width="100%" height="100%" fill="#000"></rect>
+        <text id="maskText" fill="#fff" text-anchor="middle" dominant-baseline="central">ES RUIDO</text>
+      </mask>
+    </defs>
+    <rect id="maskFill" width="100%" height="100%" mask="url(#flatMask)"></rect>
+  </svg>
+
+  <nav id="nav">
+    <a class="wordmark" href="#top"><i></i>SCALE</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menú"><span>Menú</span><b></b></button>
+  </nav>
+  <div id="panel" aria-hidden="true">
+    <div class="links">
+      <a href="#metodo" data-magnetic data-go="7.4">Método</a>
+      <a href="#sistema" data-magnetic data-go="11.05">Sistema</a>
+      <a href="#raiz" data-magnetic data-go="15.4">Raíz</a>
+      <a href="#contacto" data-magnetic data-go="21.3">Contacto</a>
+    </div>
+    <div class="meta"><b>SCALE — Miami</b>Firma internacional de desarrollo empresarial. Estrategia, marca, ventas, datos y tecnología, cultivados como un solo sistema.<br><br><b data-email></b></div>
+  </div>
+  <div id="cursor"></div>
+  <div id="ring"><span></span></div>
+  <div id="rail"><s style="top:18.2%"></s><s style="top:31.8%"></s><s style="top:50%"></s><s style="top:68.2%"></s><s style="top:81.8%"></s><s style="top:95.5%"></s><i></i></div>
+
+  <section class="ch on" id="ch-hero">
+    <div class="label" data-reveal>01 — Desarrollo empresarial · Miami</div>
+    <div class="meta"><b>SCALE</b> alinea estrategia, marca, ventas, datos y tecnología para que su negocio crezca con raíz, no con ruido.</div>
+    <h1>
+      <span class="l1"><span class="in big" data-chars>NO SE</span></span>
+      <span class="l2"><span class="in big" data-chars>IMPROVISA</span></span>
+      <span class="l3 serif">su marca <em>se cultiva.</em></span>
+    </h1>
+    <a class="cta mag ia" href="#metodo" data-magnetic data-go="7.4"><span data-chars>Conozca el método</span><span class="arrow">→</span></a>
+    <div class="hint"><span>SCROLL</span><i></i></div>
+  </section>
+
+  <section class="ch" id="ch-matter">
+    <div class="line line1 big">CRECER</div>
+    <div class="line line2 big">SIN RAÍZ</div>
+    <div class="note"><b>Vender más no alcanza.</b> Si la estructura no acompaña, crecer solo amplifica el desorden.</div>
+  </section>
+
+  <section class="ch" id="ch-gallery">
+    <div class="glow"></div>
+    <div class="dragzone ia"></div>
+    <div class="idx"><span class="counter" id="gCounter"></span><span>/ 05</span></div>
+    <div class="kind serif" id="gKind"></div>
+    <h2 class="title big" id="gTitle"></h2>
+    <div class="desc"><p id="gDesc"></p><a class="mag ia" id="gOpen" href="#detalle" data-magnetic><span data-chars>Ver etapa</span><span class="arrow">→</span></a></div>
+    <div class="hint">ARRASTRE · SCROLL · HOVER</div>
+    <aside class="detail ia" id="detail" aria-hidden="true">
+      <button class="close mag" id="detailClose" data-magnetic><span data-chars>Cerrar</span><span class="arrow">×</span></button>
+      <h3 id="dTitle"></h3>
+      <div class="fig"><span id="dLetter"></span></div>
+      <p id="dDesc"></p>
+      <div class="specs" id="dSpecs"></div>
+    </aside>
+  </section>
+
+  <section class="ch" id="ch-typo">
+    <div class="label">04 — El sistema</div>
+    <div class="note">Raíz, tallo, flor, fruto. Cada capa empieza como un muro y se abre en camino cuando la atraviesa.</div>
+    <div class="word"><div class="stage" data-chars>RAÍZ</div></div>
+    <div class="word"><div class="stage" data-chars>TALLO</div></div>
+    <div class="word"><div class="stage" data-chars>FLOR</div></div>
+    <div class="word"><div class="stage" data-chars>FRUTO</div></div>
+  </section>
+
+  <section class="ch" id="ch-physics">
+    <div class="zone ia"></div>
+    <div class="label">05 — Estructura</div>
+    <h2 class="big reveal" id="phH2"><span data-chars>Sin raíz,</span><br><em data-chars>todo cae.</em></h2>
+    <div class="hint">CLIC PARA DISPERSAR · MUEVA PARA EMPUJAR</div>
+    <div class="stats">
+      <div><div class="v counter" id="stObj"></div><div class="k">capacidades</div></div>
+      <div><div class="v counter" id="stFps"></div><div class="k">etapas</div></div>
+      <div><div class="v counter" id="stTex"></div><div class="k">improvisación</div></div>
+    </div>
+  </section>
+
+  <section class="ch" id="ch-final">
+    <h2 class="big reveal" id="finalH2"><span data-chars>SU MARCA ES</span><br><span class="serif" data-chars>un ecosistema.</span></h2>
+  </section>
+
+  <footer class="ch" id="ch-footer">
+    <div class="outro">
+      <div>
+        <div class="label">07 — Agende su diagnóstico</div>
+        <h2 class="big reveal" id="footH2"><span data-chars>Cultivemos</span><br><span class="serif" data-chars>su marca.</span></h2>
+      </div>
+      <div class="outro-cta">
+        <a class="mag ia" data-email-href data-magnetic><span data-chars>Agendar diagnóstico</span><span class="arrow">→</span></a>
+        <p>o escríbanos a <a class="ul ia" data-email data-email-href data-ul></a></p>
+      </div>
+    </div>
+    <div class="cols">
+      <div><h4>Firma</h4><p>SCALE es una firma internacional de desarrollo empresarial con base en Miami. Primero la raíz, después la altura.</p></div>
+      <div><h4>Método</h4><a href="#metodo" class="ul ia" data-ul data-go="7.3">Strategy</a><a href="#metodo" class="ul ia" data-ul data-go="8.15">Content</a><a href="#metodo" class="ul ia" data-ul data-go="9.05">Acquisition</a><a href="#metodo" class="ul ia" data-ul data-go="9.9">Learning</a><a href="#metodo" class="ul ia" data-ul data-go="10.75">Expansion</a></div>
+      <div><h4>Para quién</h4><p>Marcas de lujo<br>Agentes inmobiliarios<br>Profesionales de alto valor</p></div>
+      <div><h4>Contacto</h4><a class="ul ia" data-email data-email-href data-ul></a><p>Miami, FL</p></div>
+    </div>
+    <div>
+      <span class="mark" id="footMark" data-chars>SCALE</span>
+      <div class="legal"><span>© 2026 SCALE · MIAMI</span><span>HECHO CON RAÍZ Y ESTRATEGIA</span></div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
