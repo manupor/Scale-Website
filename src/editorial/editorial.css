@@ -1,0 +1,473 @@
+@tailwind base;
+@tailwind components;
+
+:root {
+  --void: #030303;
+  --selva: #5FD3A0;
+  --mango: #F5B041;
+  --hibisco: #FF7A6B;
+  --arena: #EBD9B4;
+  --night: #030303;
+  --accent: #F5B041;
+  --frame: 3rem;
+  --serif: Newsreader, Georgia, serif;
+  font-family: Geist, system-ui, sans-serif;
+}
+
+html,
+body {
+  background: var(--void);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Frame: hairlines inset from the edges with crosshairs at the corners */
+.ed-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ed-frame__line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ed-frame__line--t,
+.ed-frame__line--b {
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.ed-frame__line--t {
+  top: var(--frame);
+  transform-origin: left;
+}
+
+.ed-frame__line--b {
+  bottom: var(--frame);
+  transform-origin: right;
+}
+
+.ed-frame__line--l,
+.ed-frame__line--r {
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.ed-frame__line--l {
+  left: var(--frame);
+  transform-origin: top;
+}
+
+.ed-frame__line--r {
+  right: var(--frame);
+  transform-origin: bottom;
+}
+
+.ed-cross {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  transform: translate(-50%, -50%);
+}
+
+.ed-cross::before,
+.ed-cross::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.ed-cross::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.ed-cross::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.ed-cross--tl {
+  top: var(--frame);
+  left: var(--frame);
+}
+
+.ed-cross--tr {
+  top: var(--frame);
+  left: calc(100% - var(--frame));
+}
+
+.ed-cross--bl {
+  top: calc(100% - var(--frame));
+  left: var(--frame);
+}
+
+.ed-cross--br {
+  top: calc(100% - var(--frame));
+  left: calc(100% - var(--frame));
+}
+
+.ed-micro {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ed-italic {
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Reveal masks for line-by-line headline entrances */
+.ed-mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.08em;
+}
+
+.ed-mask>* {
+  display: block;
+}
+
+/* Floating palette nodes in the hero */
+.ed-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: "Space Mono", monospace;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  will-change: transform;
+}
+
+.ed-node b {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ed-node span {
+  font-size: 11px;
+}
+
+.ed-node--card {
+  width: 8rem;
+  height: 12rem;
+  border-radius: 1rem;
+}
+
+.ed-node--pill {
+  width: 6rem;
+  height: 11rem;
+  border-radius: 999px;
+  padding: 1.4rem 1.1rem;
+}
+
+.ed-node--square {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1rem;
+}
+
+.ed-node--wide {
+  width: 12rem;
+  height: 7rem;
+  border-radius: 999px;
+  padding: 1.3rem 1.6rem;
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ed-ring {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+}
+
+/* Primary button: pill with bracketed label */
+.ed-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: #fff;
+  color: #030303;
+  cursor: pointer;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.ed-btn:hover {
+  background: var(--mango);
+  transform: translateY(-2px);
+}
+
+.ed-btn__arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: #030303;
+  color: #fff;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.ed-btn:hover .ed-btn__arrow {
+  transform: rotate(-45deg);
+}
+
+.ed-btn--ghost {
+  background: transparent;
+  color: #fff;
+}
+
+.ed-btn--ghost .ed-btn__arrow {
+  background: #fff;
+  color: #030303;
+}
+
+.ed-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Scroll cue */
+.ed-scroll-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  height: 3rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ed-scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform-origin: top;
+  animation: ed-scroll 2s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+@keyframes ed-scroll {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  51% {
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Comparison lens */
+.ed-lens {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(90vw, 72rem);
+  height: 17rem;
+  transform: translate(-50%, -50%);
+  border-block: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.025) 50%, transparent);
+  pointer-events: none;
+}
+
+.ed-strike {
+  background: linear-gradient(var(--hibisco), var(--hibisco)) no-repeat 0 58% / calc(var(--strike, 0) * 100%) 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Bento cells */
+.ed-cell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.015);
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.ed-cell:hover {
+  border-color: var(--cell, rgba(255, 255, 255, 0.3));
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ed-cell__glow {
+  position: absolute;
+  right: -30%;
+  bottom: -40%;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--cell), transparent 65%);
+  opacity: 0.12;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.ed-cell:hover .ed-cell__glow {
+  opacity: 0.28;
+}
+
+.ed-letter {
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.8;
+}
+
+.ed-tag {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Pulse dot */
+.ed-pulse {
+  position: relative;
+  display: inline-flex;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.ed-pulse::before,
+.ed-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--selva);
+}
+
+.ed-pulse::before {
+  animation: ed-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ed-ping {
+
+  75%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Tropical horizon glow for the closing CTA */
+.ed-sun {
+  position: absolute;
+  left: 50%;
+  bottom: -55vmin;
+  width: 110vmin;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, var(--mango), var(--hibisco) 40%, rgba(255, 122, 107, 0) 100%);
+  opacity: 0.45;
+  filter: blur(10px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ed-leaf {
+  position: absolute;
+  color: var(--selva);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --frame: 1rem;
+  }
+
+  .ed-node--card {
+    width: 5.5rem;
+    height: 8rem;
+  }
+
+  .ed-node--pill {
+    width: 4.2rem;
+    height: 7.5rem;
+    padding: 1rem 0.7rem;
+  }
+
+  .ed-node--square {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .ed-node--wide {
+    width: 8rem;
+    height: 4.6rem;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .ed-node b {
+    font-size: 7px;
+  }
+
+  .ed-node span {
+    font-size: 9px;
+  }
+
+  .ed-lens {
+    height: auto;
+    min-height: 22rem;
+  }
+}
+
+@tailwind utilities;

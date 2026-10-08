@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ScrollTrigger } from './lib/motion'
-import Header from './sections/Header'
-import Hero from './sections/Hero'
-import Capabilities from './sections/Capabilities'
-import Statement from './sections/Statement'
-import Problem from './sections/Problem'
-import Approach from './sections/Approach'
-import Method from './sections/Method'
-import Philosophy from './sections/Philosophy'
-import Faq from './sections/Faq'
-import CtaBanner from './sections/CtaBanner'
-import Footer from './sections/Footer'
+import Header from './editorial/Header'
+import Hero from './editorial/Hero'
+import Manifesto from './editorial/Manifesto'
+import Comparison from './editorial/Comparison'
+import MethodBento from './editorial/MethodBento'
+import Faq from './editorial/Faq'
+import FinalCta from './editorial/FinalCta'
+import Footer from './editorial/Footer'
 
 function DiagnosisForm() {
   const [status, setStatus] = useState('')
@@ -98,20 +95,16 @@ function App() {
 
   return (
     <>
-      <a className="skip-link" href="#capacidades">Saltar al contenido</a>
+      <a className="skip-link" href="#manifiesto">Saltar al contenido</a>
       <Header onContact={openContact} />
 
-      <Hero onContact={openContact} />
-
-      <main className="content bg-night text-paper">
-        <Capabilities />
-        <Statement />
-        <Problem />
-        <Approach />
-        <Method onContact={openContact} />
-        <Philosophy />
+      <main className="bg-void text-white">
+        <Hero onContact={openContact} />
+        <Manifesto />
+        <Comparison />
+        <MethodBento onContact={openContact} />
         <Faq />
-        <CtaBanner onContact={openContact} />
+        <FinalCta onContact={openContact} />
       </main>
       <Footer />
 
