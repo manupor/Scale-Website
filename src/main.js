@@ -914,15 +914,45 @@ $('#detailClose').addEventListener('click', closeDetail)
 el.gOpen.addEventListener('click', (e) => { e.preventDefault(); openDetail(clamp(Math.round(gallery.g ?? 0), 0, 4)) })
 addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail() })
 
+const gNav = document.createElement('nav')
+gNav.className = 'letters ia'
+gNav.setAttribute('aria-label', 'Etapas S.C.A.L.E.')
+gNav.innerHTML = '<button type="button" class="step" data-dir="-1" aria-label="Etapa anterior">←</button>'
+  + STAGES.map((s, i) => `<button type="button" data-i="${i}" aria-label="${s.title}">${s.letter}</button>`).join('')
+  + '<button type="button" class="step" data-dir="1" aria-label="Etapa siguiente">→</button>'
+el.gIdx.after(gNav)
+const gLetterEls = [...gNav.querySelectorAll('[data-i]')]
+function goStage(i) {
+  i = clamp(i, 0, STAGES.length - 1)
+  drag.offset = i - range(scroll.p, 7.0, 11.0) * 4
+  drag.v = 0
+  if (detailOpen) openDetail(i)
+}
+gNav.addEventListener('click', (e) => {
+  const b = e.target.closest('button')
+  if (!b) return
+  const cur = clamp(Math.round(gallery.g ?? 0), 0, STAGES.length - 1)
+  goStage(b.dataset.dir ? cur + +b.dataset.dir : +b.dataset.i)
+})
+addEventListener('keydown', (e) => {
+  if (scroll.p < 6.9 || scroll.p > 11.5) return
+  const cur = clamp(Math.round(gallery.g ?? 0), 0, STAGES.length - 1)
+  if (e.key === 'ArrowRight') goStage(cur + 1)
+  else if (e.key === 'ArrowLeft') goStage(cur - 1)
+})
+
 let gActive = -1
 function setGalleryText(i, instant) {
   const d = STAGES[i]
+  gLetterEls.forEach((b, k) => b.classList.toggle('on', k === i))
   const apply = () => {
-    el.gTitle.textContent = d.title; el.gKind.textContent = d.kind; el.gDesc.textContent = d.desc
+    if (el.gTitle) el.gTitle.textContent = d.title
+    if (el.gKind) el.gKind.textContent = d.kind
+    if (el.gDesc) el.gDesc.textContent = d.desc
     el.gallery.style.setProperty('--accent', d.accent)
     el.gallery.classList.remove('swap')
   }
-  gCounter.set(i + 1)
+  if (gCounter) gCounter.set(i + 1)
   if (instant) { apply(); return }
   el.gallery.classList.add('swap')
   setTimeout(apply, 260)
@@ -1017,17 +1047,17 @@ function frame(now) {
   } else el.mask.style.display = 'none'
 
   /* 03 método */
-  const gAppear = range(p, 6.98, 7.6) * (1 - range(p, 10.75, 11.3))
+  const gAppear = range(p, 6.98, 7.6) * (1 - range(p, 11.0, 11.5))
   if (!drag.on) {
     drag.v = damp(drag.v, 0, 5, dt)
     drag.offset += drag.v * dt
-    const gScroll = range(p, 7.25, 10.75) * 4
+    const gScroll = range(p, 7.0, 11.0) * 4
     const snap = Math.round(gScroll + drag.offset) - gScroll
     if (Math.abs(drag.v) < 0.4) drag.offset = damp(drag.offset, snap, 6, dt)
   }
-  const g = clamp(range(p, 7.25, 10.75) * 4 + drag.offset, -0.7, 4.7)
+  const g = clamp(range(p, 7.0, 11.0) * 4 + drag.offset, -0.7, 4.7)
   gallery.g = g
-  const galleryOn = p > 6.9 && p < 11.3
+  const galleryOn = p > 6.9 && p < 11.5
   gallery.update(dt, { t, g, appear: gAppear, pointer, camera: S.camera, enabled: galleryOn && !menu, detailOpen })
   if (galleryOn) {
     const ai = clamp(Math.round(g), 0, 4)
@@ -1037,8 +1067,8 @@ function frame(now) {
     S.accent.intensity = damp(S.accent.intensity, 9 * gAppear, 4, dt)
     el.gallery.classList.toggle('lit', gAppear > 0.5)
     el.gTitle.style.transform = `translate3d(0, ${((1 - gAppear) * 10).toFixed(2)}vh, 0) scaleY(${stretch.v.toFixed(4)})`
-    for (const n of [el.gTitle, el.gKind, el.gDesc.parentElement, el.gHint, el.gIdx]) n.style.opacity = gAppear
-    if (detailOpen && (p < 7 || p > 11)) closeDetail()
+    for (const n of [el.gTitle, el.gKind, el.gDesc?.parentElement, el.gHint, el.gIdx, gNav]) if (n) n.style.opacity = gAppear
+    if (detailOpen && (p < 7 || p > 11.5)) closeDetail()
   } else {
     S.accent.intensity = damp(S.accent.intensity, 0, 4, dt)
     keyTarget.copy(keyBase)

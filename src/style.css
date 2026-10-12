@@ -628,6 +628,47 @@ html.menu #panel .links a:nth-child(4) {
   color: var(--muted);
 }
 
+#ch-gallery .letters {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(16vh + 28px);
+  display: flex;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .05em;
+}
+
+#ch-gallery .letters button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  transition: color .3s, background .3s, border-color .3s;
+}
+
+#ch-gallery .letters button:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+#ch-gallery .letters .step {
+  border-color: transparent;
+}
+
+#ch-gallery .letters button.on {
+  color: var(--pearl);
+  background: var(--accent, var(--selva));
+  border-color: var(--accent, var(--selva));
+}
+
 .counter {
   display: inline-flex;
   height: 1.1em;
@@ -1265,6 +1306,7 @@ html.menu #panel .links a:nth-child(4) {
 #ch-gallery .desc,
 #ch-gallery .hint,
 #ch-gallery .idx,
+#ch-gallery .letters,
 #ch-matter .note {
   opacity: 0;
 }
