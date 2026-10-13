@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 
-const page = fileURLToPath(new URL('./src/site.html', import.meta.url))
+const page = fileURLToPath(new URL('./src/cc/page.html', import.meta.url))
 const localLogo = fileURLToPath(new URL('./public/scale-logo.png', import.meta.url))
 const desktopLogo = '/Users/manu/Desktop/1x/AssScale Logo 1.png'
 const logoPath = () => (existsSync(localLogo) ? localLogo : existsSync(desktopLogo) ? desktopLogo : null)
