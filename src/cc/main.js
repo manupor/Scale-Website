@@ -1,7 +1,7 @@
 import './style.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { initFloatingLines } from './floating-lines.js'
+import { initBrandBackground } from './brand-bg.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,16 +15,7 @@ const safe = (name, fn) => {
 
 /* ---------- global background ---------- */
 function initBackground() {
-  initFloatingLines($('#floatingLines'), {
-    enabledWaves: ['top', 'middle', 'bottom'],
-    lineCount: 5,
-    lineDistance: 5,
-    bendRadius: 5,
-    bendStrength: -0.5,
-    interactive: true,
-    parallax: true,
-    linesGradient: ['#3b0764', '#4c1d95', '#2e1065'],
-  })
+  initBrandBackground($('#floatingLines'))
 }
 
 /* ---------- cinematic hero ---------- */
@@ -86,93 +77,63 @@ function initHero() {
   }, container)
 }
 
-/* ---------- staggered menu ---------- */
-function initMenu() {
-  const wrapper = $('#menu')
-  const panel = $('#staggered-menu-panel')
-  const layers = $$('.sm-prelayer', wrapper)
-  const toggle = $('#smToggle')
-  const icon = $('#smIcon')
-  const plusH = $('#smPlusH'), plusV = $('#smPlusV')
-  const textInner = $('#smTextInner')
-  const backdrop = $('#navBackdrop')
-  const OPEN = 'Cerrar', CLOSED = 'Menú'
-  let open = false, busy = false, openTl = null, closeTween = null
+/* ---------- pill nav ---------- */
+function initPillNav() {
+  const container = $('#menu')
+  if (!container) return
+  const pills = [...container.querySelectorAll('.pill[href]')]
 
-  gsap.set([panel, ...layers], { xPercent: 100 })
-  gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 })
-  gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 })
-  gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' })
-  gsap.set(textInner, { yPercent: 0 })
-
-  const items = () => $$('.sm-panel-itemLabel', panel)
-
-  const playOpen = () => {
-    if (busy) return
-    busy = true
-    openTl?.kill(); closeTween?.kill()
-    gsap.set(items(), { yPercent: 140, rotate: 10 })
-    const tl = gsap.timeline({ onComplete: () => { busy = false } })
-    layers.forEach((el, i) => tl.fromTo(el, { xPercent: gsap.getProperty(el, 'xPercent') }, { xPercent: 0, duration: 0.5, ease: 'power4.out' }, i * 0.07))
-    const panelAt = (layers.length - 1) * 0.07 + (layers.length ? 0.08 : 0)
-    tl.fromTo(panel, { xPercent: gsap.getProperty(panel, 'xPercent') }, { xPercent: 0, duration: 0.65, ease: 'power4.out' }, panelAt)
-    tl.to(items(), { yPercent: 0, rotate: 0, duration: 1, ease: 'power4.out', stagger: { each: 0.1, from: 'start' } }, panelAt + 0.65 * 0.15)
-    openTl = tl
+  for (const pill of pills) {
+    const text = pill.textContent.trim()
+    pill.setAttribute('aria-label', text)
+    pill.innerHTML = '<span class="hover-circle" aria-hidden="true"></span>'
+      + `<span class="label-stack"><span class="pill-label">${text}</span><span class="pill-label-hover" aria-hidden="true">${text}</span></span>`
   }
 
-  const playClose = () => {
-    openTl?.kill(); openTl = null
-    closeTween?.kill()
-    closeTween = gsap.to([...layers, panel], {
-      xPercent: 100, duration: 0.32, ease: 'power3.in', overwrite: 'auto',
-      onComplete: () => { gsap.set(items(), { yPercent: 140, rotate: 10 }); busy = false },
-    })
+  const layout = () => {
+    for (const pill of pills) {
+      const circle = pill.querySelector('.hover-circle')
+      const { width: w, height: h } = pill.getBoundingClientRect()
+      if (!w || !h) continue
+      const R = ((w * w) / 4 + h * h) / (2 * h)
+      const D = Math.ceil(2 * R) + 2
+      const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1
+      circle.style.width = `${D}px`
+      circle.style.height = `${D}px`
+      circle.style.bottom = `-${delta}px`
+      circle.style.transformOrigin = `50% ${D - delta}px`
+      pill.style.setProperty('--h', `${h}px`)
+    }
   }
+  layout()
+  addEventListener('resize', layout)
+  document.fonts?.ready.then(layout).catch(() => { })
 
-  const animateText = (opening) => {
-    const from = opening ? CLOSED : OPEN, to = opening ? OPEN : CLOSED
-    const seq = [from]
-    let last = from
-    for (let i = 0; i < 3; i++) { last = last === CLOSED ? OPEN : CLOSED; seq.push(last) }
-    if (last !== to) seq.push(to)
-    seq.push(to)
-    textInner.innerHTML = seq.map((l) => `<span class="sm-toggle-line">${l}</span>`).join('')
-    gsap.set(textInner, { yPercent: 0 })
-    gsap.to(textInner, { yPercent: -((seq.length - 1) / seq.length) * 100, duration: 0.5 + seq.length * 0.07, ease: 'power4.out' })
-  }
-
-  const measure = (label) => {
-    const s = document.createElement('span')
-    s.textContent = label
-    s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit'
-    toggle.appendChild(s)
-    const w = s.getBoundingClientRect().width
-    s.remove()
-    return Math.ceil(w)
-  }
-
-  const setOpen = (next) => {
-    if (next === open) return
-    open = next
-    wrapper.toggleAttribute('data-open', open)
-    toggle.setAttribute('aria-expanded', String(open))
-    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú')
-    panel.setAttribute('aria-hidden', String(!open))
-    if (open) playOpen(); else playClose()
-    gsap.to(icon, open ? { rotate: 225, duration: 0.8, ease: 'power4.out', overwrite: 'auto' } : { rotate: 0, duration: 0.35, ease: 'power3.inOut', overwrite: 'auto' })
-    animateText(open)
-  }
-
-  textInner.parentElement.style.width = `${Math.max(measure(OPEN), measure(CLOSED))}px`
-  toggle.addEventListener('click', () => setOpen(!open))
-  $$('.sm-panel-item', panel).forEach((a) => a.addEventListener('click', () => setOpen(false)))
-  document.addEventListener('mousedown', (e) => {
-    if (open && !panel.contains(e.target) && !toggle.contains(e.target)) setOpen(false)
-  })
-
-  const onScroll = () => backdrop.classList.toggle('on', scrollY > 20)
+  const onScroll = () => container.classList.toggle('scrolled', scrollY > 20)
   addEventListener('scroll', onScroll, { passive: true })
   onScroll()
+
+  const btn = container.querySelector('.mobile-menu-button')
+  const setOpen = (open) => {
+    container.classList.toggle('open', open)
+    btn.setAttribute('aria-expanded', String(open))
+    btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú')
+  }
+  btn.addEventListener('click', () => setOpen(!container.classList.contains('open')))
+  container.querySelectorAll('.mobile-menu-link').forEach((a) => a.addEventListener('click', () => setOpen(false)))
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false) })
+
+  const sections = $$('.cc-section[id], .cc-hero[id]')
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      const id = entry.target.id
+      container.querySelectorAll('.pill[href], .mobile-menu-link').forEach((el) => {
+        el.classList.toggle('is-active', el.getAttribute('href') === `#${id}`)
+      })
+    }
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 })
+  sections.forEach((s) => observer.observe(s))
 }
 
 /* ---------- whileInView reveals ---------- */
@@ -275,7 +236,7 @@ function initMeta() {
 
 safe('background', initBackground)
 safe('hero', initHero)
-safe('menu', initMenu)
+safe('menu', initPillNav)
 safe('reveal', initReveal)
 safe('logos', initLogos)
 safe('tech', initTech)

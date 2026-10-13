@@ -24,47 +24,37 @@
 
     <div class="home-content">
       <!-- nav -->
-      <div class="nav-backdrop" id="navBackdrop"></div>
-      <div class="staggered-menu-wrapper fixed-wrapper" id="menu" data-position="right" style="--sm-accent: #c6ff34">
-        <div class="sm-prelayers" aria-hidden="true">
-          <div class="sm-prelayer" style="background: transparent"></div>
-          <div class="sm-prelayer" style="background: transparent"></div>
-        </div>
-        <header class="staggered-menu-header" aria-label="Navegación principal">
-          <div class="sm-logo" aria-label="Logo">
-            <a href="#home"><img src="/scale-logo.png" alt="SCALE" class="sm-logo-img" draggable="false" width="110"
-                height="24" /></a>
-          </div>
-          <button class="sm-toggle" id="smToggle" aria-label="Abrir menú" aria-expanded="false"
-            aria-controls="staggered-menu-panel" type="button">
-            <span class="sm-toggle-textWrap" aria-hidden="true">
-              <span class="sm-toggle-textInner" id="smTextInner"><span class="sm-toggle-line">Menú</span></span>
-            </span>
-            <span class="sm-icon" id="smIcon" aria-hidden="true">
-              <span class="sm-icon-line" id="smPlusH"></span>
-              <span class="sm-icon-line sm-icon-line-v" id="smPlusV"></span>
-            </span>
-          </button>
-        </header>
-        <aside id="staggered-menu-panel" class="staggered-menu-panel" aria-hidden="true">
-          <div class="sm-panel-inner">
-            <ul class="sm-panel-list" role="list">
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#home"><span
-                    class="sm-panel-itemLabel">Inicio</span></a></li>
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#services"><span
-                    class="sm-panel-itemLabel">Servicios</span></a></li>
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#about"><span
-                    class="sm-panel-itemLabel">Nosotros</span></a></li>
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#process"><span
-                    class="sm-panel-itemLabel">Proceso</span></a></li>
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#faq"><span
-                    class="sm-panel-itemLabel">Preguntas</span></a></li>
-              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#contact" data-open-modal><span
-                    class="sm-panel-itemLabel">Contacto</span></a></li>
+      <header class="pill-nav-container" id="menu" aria-label="Navegación principal">
+        <nav class="pill-nav">
+          <a class="pill-logo" href="#home" aria-label="SCALE inicio">
+            <img src="/scale-logo.png" alt="SCALE" width="110" height="24" />
+          </a>
+          <div class="pill-nav-items desktop-only">
+            <ul class="pill-list" role="menubar">
+              <li role="none"><a role="menuitem" class="pill" href="#home">Inicio</a></li>
+              <li role="none"><a role="menuitem" class="pill" href="#services">Servicios</a></li>
+              <li role="none"><a role="menuitem" class="pill" href="#about-brand">Nosotros</a></li>
+              <li role="none"><a role="menuitem" class="pill" href="#process">Proceso</a></li>
+              <li role="none"><a role="menuitem" class="pill" href="#faq">Preguntas</a></li>
             </ul>
           </div>
-        </aside>
-      </div>
+          <button class="pill pill-cta desktop-only" data-open-modal>Agendar diagnóstico</button>
+          <button class="mobile-menu-button mobile-only" aria-label="Abrir menú" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </nav>
+        <div class="mobile-menu-popover mobile-only">
+          <ul class="mobile-menu-list">
+            <li><a class="mobile-menu-link" href="#home">Inicio</a></li>
+            <li><a class="mobile-menu-link" href="#services">Servicios</a></li>
+            <li><a class="mobile-menu-link" href="#about-brand">Nosotros</a></li>
+            <li><a class="mobile-menu-link" href="#process">Proceso</a></li>
+            <li><a class="mobile-menu-link" href="#faq">Preguntas</a></li>
+            <li><button class="mobile-menu-link is-cta" data-open-modal>Agendar diagnóstico</button></li>
+          </ul>
+        </div>
+      </header>
 
       <!-- cinematic hero -->
       <div class="cc-hero" id="home">
