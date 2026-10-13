@@ -45,7 +45,7 @@ export function initBrandBackground(container) {
     uMouse: { value: new THREE.Vector2(0, 0) },
     uMouseAmp: { value: 0 },
     uSize: { value: 2.2 * renderer.getPixelRatio() },
-    uBase: { value: new THREE.Color('#0a0a0f') },
+    uBase: { value: new THREE.Color('#000000') },
     uBlue: { value: new THREE.Color('#0066ff') },
     uViolet: { value: new THREE.Color('#8c55ff') },
     uLime: { value: new THREE.Color('#c6ff34') },
