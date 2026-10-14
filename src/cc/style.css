@@ -254,15 +254,8 @@ svg {
 }
 
 /* reveal (framer-motion whileInView equivalent) */
-.reveal {
+.reveal:not(.in) {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .55s ease-out, transform .55s ease-out;
-}
-
-.reveal.in {
-  opacity: 1;
-  transform: none;
 }
 
 /* ---------- buttons ---------- */
@@ -1742,10 +1735,37 @@ svg {
 }
 
 .faq-item {
-  border-radius: .25rem;
+  position: relative;
+  border-radius: .75rem;
   border: 1px solid rgba(255, 255, 255, .1);
   background: rgba(255, 255, 255, .03);
   overflow: hidden;
+  transition: border-color .4s ease, background-color .4s ease, box-shadow .5s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.faq-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 140% at 0% 0%, rgba(47, 91, 255, .18), transparent 60%);
+  opacity: 0;
+  transition: opacity .5s ease;
+  pointer-events: none;
+}
+
+.faq-item:hover {
+  border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-2px);
+}
+
+.faq-item.is-open {
+  border-color: rgba(122, 165, 255, .45);
+  background: rgba(47, 91, 255, .06);
+  box-shadow: 0 0 0 1px rgba(47, 91, 255, .15), 0 18px 40px -18px rgba(47, 91, 255, .55);
+}
+
+.faq-item.is-open::before {
+  opacity: 1;
 }
 
 .faq-q {
@@ -1756,6 +1776,8 @@ svg {
   gap: 1rem;
   padding: 1.25rem 1.5rem;
   text-align: left;
+  position: relative;
+  cursor: pointer;
 }
 
 .faq-q span {
@@ -1763,6 +1785,12 @@ svg {
   line-height: 1.25rem;
   font-weight: 500;
   color: var(--foreground);
+  transition: color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.faq-item.is-open .faq-q span {
+  color: #fff;
+  transform: translateX(4px);
 }
 
 .pm {
@@ -1771,6 +1799,12 @@ svg {
   height: 16px;
   flex-shrink: 0;
   color: var(--muted-1);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1), color .3s ease;
+}
+
+.faq-item.is-open .pm {
+  transform: rotate(180deg);
+  color: #7aa5ff;
 }
 
 .pm::before,
@@ -1788,17 +1822,18 @@ svg {
 
 .pm::after {
   transform: translate(-50%, -50%) rotate(90deg);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
 }
 
 .faq-q[aria-expanded="true"] .pm::after {
-  display: none;
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
 }
 
 .faq-a {
+  position: relative;
   height: 0;
-  opacity: 0;
   overflow: hidden;
-  transition: height .25s ease-in-out, opacity .25s ease-in-out;
 }
 
 .faq-a p {
@@ -2724,7 +2759,7 @@ svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .team-grid>.member {
@@ -2734,9 +2769,9 @@ svg {
 .member {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.25rem;
-  border-radius: .25rem;
+  gap: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: .75rem;
   border: 1px solid rgba(255, 255, 255, .07);
   background: rgba(255, 255, 255, .02);
   transition: border-color .3s, background .3s;
@@ -2750,8 +2785,8 @@ svg {
 .member-photo {
   flex-shrink: 0;
   display: block;
-  width: 4rem;
-  height: 4rem;
+  width: 5.75rem;
+  height: 5.75rem;
   border-radius: 9999px;
   object-fit: cover;
   object-position: center 20%;
@@ -2760,14 +2795,14 @@ svg {
 }
 
 .member-name {
-  font-size: .95rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--foreground);
 }
 
 .member-role {
-  margin-top: .15rem;
-  font-size: .8125rem;
+  margin-top: .25rem;
+  font-size: .9rem;
   color: var(--muted-2);
 }
 
@@ -2984,13 +3019,13 @@ html[lang="en"] .m-en {
 
 @media (min-width: 640px) {
   .team-grid>.member {
-    flex-basis: calc((100% - 1rem) / 2);
+    flex-basis: calc((100% - 1.25rem) / 2);
   }
 }
 
 @media (min-width: 1024px) {
   .team-grid>.member {
-    flex-basis: calc((100% - 2rem) / 3);
+    flex-basis: calc((100% - 2.5rem) / 3);
   }
 
   .method-pillars {
@@ -3029,5 +3064,66 @@ html[lang="en"] .m-en {
 
   .m-pillar.active .m-desc {
     display: block;
+  }
+}
+
+.float-cta.specular-button {
+  position: fixed;
+}
+
+@media (max-width: 640px) {
+  .service-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: .75rem;
+  }
+
+  .service-card>div,
+  .why-row>div {
+    min-width: 0;
+  }
+
+  .service-title,
+  .row-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .4rem;
+  }
+
+  .tag {
+    font-size: 11px;
+    line-height: 16px;
+    padding: 3px 9px;
+  }
+
+  .why-row {
+    gap: 1rem;
+  }
+
+  .why-n {
+    width: 2.25rem;
+    font-size: 1.75rem;
+    text-align: left;
+  }
+
+  .services-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .foot-list {
+    gap: .25rem;
+  }
+
+  .foot-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  .float-cta {
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }

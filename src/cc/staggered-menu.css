@@ -22,6 +22,35 @@
   background: transparent;
   pointer-events: none;
   z-index: 20;
+  isolation: isolate;
+  transition: padding .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.staggered-menu-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .78), rgba(0, 0, 0, .55));
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+
+.staggered-menu-wrapper.is-scrolled .staggered-menu-header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.staggered-menu-wrapper.is-scrolled .staggered-menu-header::before {
+  opacity: 1;
+}
+
+.staggered-menu-wrapper[data-open] .staggered-menu-header::before {
+  opacity: 0;
 }
 
 .staggered-menu-header>* {
@@ -338,5 +367,18 @@ body:has(.staggered-menu-wrapper[data-open]) .float-cta {
 @media (max-width: 640px) {
   .staggered-menu-header {
     padding: 1.25em 1.25em;
+  }
+
+  .staggered-menu-wrapper.is-scrolled .staggered-menu-header {
+    padding-top: .75em;
+    padding-bottom: .75em;
+  }
+
+  .sm-logo-img {
+    height: 24px;
+  }
+
+  .staggered-menu-panel {
+    padding: 5.5em 1.5em 2em;
   }
 }

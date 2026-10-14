@@ -116,6 +116,10 @@ function initMenu() {
   })
   initGhostFibers($('#menuFibers'), FIBERS)
 
+  const onScroll = () => container.classList.toggle('is-scrolled', scrollY > 24)
+  addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+
   const sections = $$('.cc-section[id], .cc-hero[id]')
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
@@ -131,10 +135,32 @@ function initMenu() {
 
 /* ---------- whileInView reveals ---------- */
 function initReveal() {
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) }
-  }, { rootMargin: '0px 0px -80px 0px' })
-  $$('.reveal').forEach((el) => io.observe(el))
+  const blocks = $$('.reveal')
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    blocks.forEach((el) => el.classList.add('in'))
+    return
+  }
+  blocks.forEach((el) => {
+    const kids = [...el.children]
+    const targets = kids.length > 1 ? kids : [el]
+    gsap.set(targets, { autoAlpha: 0, y: 48, scale: 0.98, filter: 'blur(10px)', transition: 'none' })
+    el.classList.add('in')
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => gsap.to(targets, {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+        duration: 1.1,
+        ease: 'power3.out',
+        stagger: { each: 0.12, from: 'start' },
+        clearProps: 'opacity,visibility,transform,filter,transition',
+      }),
+    })
+  })
 }
 
 /* ---------- draggable logo marquee ---------- */
@@ -190,10 +216,20 @@ function initTech() {
 function initFaq() {
   const items = $$('.faq-item')
   const set = (item, open) => {
-    const q = $('.faq-q', item), a = $('.faq-a', item)
+    const q = $('.faq-q', item), a = $('.faq-a', item), p = $('p', a)
+    if ((q.getAttribute('aria-expanded') === 'true') === open) return
     q.setAttribute('aria-expanded', String(open))
-    a.style.height = open ? `${a.scrollHeight}px` : '0px'
-    a.style.opacity = open ? '1' : '0'
+    item.classList.toggle('is-open', open)
+    gsap.killTweensOf([a, p])
+    if (open) {
+      gsap.to(a, { height: 'auto', duration: 0.65, ease: 'power3.inOut' })
+      gsap.fromTo(p,
+        { autoAlpha: 0, y: -14, filter: 'blur(6px)' },
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.6, delay: 0.18, ease: 'power3.out', clearProps: 'filter' })
+    } else {
+      gsap.to(p, { autoAlpha: 0, y: -8, duration: 0.25, ease: 'power2.in' })
+      gsap.to(a, { height: 0, duration: 0.45, ease: 'power3.inOut' })
+    }
   }
   items.forEach((item) => {
     $('.faq-q', item).addEventListener('click', () => {
