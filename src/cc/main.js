@@ -174,6 +174,7 @@ function initLogos() {
     img.style.height = `${Math.round(Math.sqrt(LOGO_AREA / ratio))}px`
   }
   $$('img', track).forEach((img) => {
+    img.loading = 'eager'
     if (img.complete) sizeLogo(img)
     else img.addEventListener('load', () => sizeLogo(img), { once: true })
   })
