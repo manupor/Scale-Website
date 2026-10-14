@@ -8,7 +8,7 @@ import { CONFIG, EN } from './i18n.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const EMAIL = 'hola@tudominio.com'
+const EMAIL = 'vanvas@scaleagency.lat,gerardo@scaleagency.lat'
 const $ = (s, r = document) => r.querySelector(s)
 const $$ = (s, r = document) => [...r.querySelectorAll(s)]
 
