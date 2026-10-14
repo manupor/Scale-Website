@@ -1,7 +1,10 @@
 import './style.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { initBrandBackground } from './brand-bg.js'
+import { initGhostFibers } from './ghost-fibers.js'
+import { initSpecularButton } from './specular-button.js'
+import { initStaggeredMenu } from './staggered-menu.js'
+import { CONFIG, EN } from './i18n.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,16 +17,36 @@ const safe = (name, fn) => {
 }
 
 /* ---------- global background ---------- */
+const FIBERS = {
+  glowColor: '#2f5bff',
+  speed: 0.2,
+  scale: 2,
+  rotationSpeed: 0.25,
+  layers: 4,
+  twist: 0.1,
+  threads: 1,
+  glow: 1.3,
+  brightness: 0.9,
+  vignette: 0.8,
+  rotation: 0,
+  waves: 0.015,
+  spread: 1,
+  thickness: 1,
+  grain: 0.03,
+  mouseInteraction: true,
+  lightMode: false,
+}
+
 function initBackground() {
-  initBrandBackground($('#floatingLines'))
+  initGhostFibers($('#floatingLines'), FIBERS)
 }
 
 /* ---------- cinematic hero ---------- */
 function initHero() {
-  const container = $('#home')
+  const container = $('#inicio')
   const mainCard = $('#mainCard')
   const mockup = $('#mockup')
-  const metricValue = 7
+  const metricValue = 5
 
   let raf = 0
   addEventListener('mousemove', (e) => {
@@ -77,58 +100,28 @@ function initHero() {
   }, container)
 }
 
-/* ---------- pill nav ---------- */
-function initPillNav() {
+/* ---------- staggered menu ---------- */
+const MENU_LABELS = { es: { open: 'Menú', close: 'Cerrar' }, en: { open: 'Menu', close: 'Close' } }
+let menu = null
+
+function initMenu() {
   const container = $('#menu')
   if (!container) return
-  const pills = [...container.querySelectorAll('.pill[href]')]
-
-  for (const pill of pills) {
-    const text = pill.textContent.trim()
-    pill.setAttribute('aria-label', text)
-    pill.innerHTML = '<span class="hover-circle" aria-hidden="true"></span>'
-      + `<span class="label-stack"><span class="pill-label">${text}</span><span class="pill-label-hover" aria-hidden="true">${text}</span></span>`
-  }
-
-  const layout = () => {
-    for (const pill of pills) {
-      const circle = pill.querySelector('.hover-circle')
-      const { width: w, height: h } = pill.getBoundingClientRect()
-      if (!w || !h) continue
-      const R = ((w * w) / 4 + h * h) / (2 * h)
-      const D = Math.ceil(2 * R) + 2
-      const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1
-      circle.style.width = `${D}px`
-      circle.style.height = `${D}px`
-      circle.style.bottom = `-${delta}px`
-      circle.style.transformOrigin = `50% ${D - delta}px`
-      pill.style.setProperty('--h', `${h}px`)
-    }
-  }
-  layout()
-  addEventListener('resize', layout)
-  document.fonts?.ready.then(layout).catch(() => { })
-
-  const onScroll = () => container.classList.toggle('scrolled', scrollY > 20)
-  addEventListener('scroll', onScroll, { passive: true })
-  onScroll()
-
-  const btn = container.querySelector('.mobile-menu-button')
-  const setOpen = (open) => {
-    container.classList.toggle('open', open)
-    btn.setAttribute('aria-expanded', String(open))
-    btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú')
-  }
-  btn.addEventListener('click', () => setOpen(!container.classList.contains('open')))
-  container.querySelectorAll('.mobile-menu-link').forEach((a) => a.addEventListener('click', () => setOpen(false)))
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false) })
+  menu = initStaggeredMenu(container, {
+    position: 'right',
+    menuButtonColor: '#ffffff',
+    openMenuButtonColor: '#ffffff',
+    changeMenuColorOnOpen: true,
+    labels: { ...MENU_LABELS.es },
+  })
+  initGhostFibers($('#menuFibers'), FIBERS)
 
   const sections = $$('.cc-section[id], .cc-hero[id]')
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue
       const id = entry.target.id
-      container.querySelectorAll('.pill[href], .mobile-menu-link').forEach((el) => {
+      container.querySelectorAll('.sm-panel-item').forEach((el) => {
         el.classList.toggle('is-active', el.getAttribute('href') === `#${id}`)
       })
     }
@@ -148,6 +141,16 @@ function initReveal() {
 function initLogos() {
   const viewport = $('#logosViewport'), track = $('#logosTrack')
   track.innerHTML += track.innerHTML
+  const LOGO_AREA = 5200
+  const sizeLogo = (img) => {
+    const ratio = img.naturalWidth / img.naturalHeight
+    if (!ratio) return
+    img.style.height = `${Math.round(Math.sqrt(LOGO_AREA / ratio))}px`
+  }
+  $$('img', track).forEach((img) => {
+    if (img.complete) sizeLogo(img)
+    else img.addEventListener('load', () => sizeLogo(img), { once: true })
+  })
   const DURATION = 35
   let dragging = false, startX = 0, baseX = 0, curX = 0
 
@@ -200,12 +203,75 @@ function initFaq() {
   })
 }
 
+/* ---------- language (ES markup / EN dictionary) ---------- */
+let lang = 'es'
+const ES = {}
+
+const waLink = () => (CONFIG.WHATSAPP
+  ? `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WA_MSG[lang])}`
+  : '')
+const ctaTarget = () => CONFIG.CALENDAR_URL || waLink()
+
+function setLang(next) {
+  lang = next === 'en' ? 'en' : 'es'
+  const dict = lang === 'en' ? EN : ES
+  $$('[data-i18n]').forEach((n) => {
+    const v = dict[n.dataset.i18n]
+    if (v !== undefined) n.innerHTML = v
+  })
+  document.documentElement.lang = lang
+  document.title = lang === 'en' ? 'SCALE · Commercial direction' : 'SCALE · Dirección comercial'
+  $$('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)))
+  menu?.setLabels(MENU_LABELS[lang])
+  $$('.faq-q[aria-expanded="true"] + .faq-a').forEach((a) => { a.style.height = `${a.scrollHeight}px` })
+  try { localStorage.setItem('scale-lang', lang) } catch { /* storage unavailable */ }
+}
+
+function initI18n() {
+  $$('[data-i18n]').forEach((n) => {
+    const k = n.dataset.i18n
+    if (!(k in ES)) ES[k] = n.innerHTML
+  })
+  $$('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)))
+  let saved = null
+  try { saved = localStorage.getItem('scale-lang') } catch { /* storage unavailable */ }
+  setLang(saved)
+}
+
+/* ---------- method pillars ---------- */
+function initPillars() {
+  const pillars = $$('.m-pillar')
+  const activate = (p) => pillars.forEach((x) => {
+    const on = x === p
+    x.classList.toggle('active', on)
+    x.setAttribute('aria-expanded', String(on))
+  })
+  pillars.forEach((p) => {
+    p.addEventListener('click', () => activate(p))
+    p.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) activate(p) })
+    p.addEventListener('focus', () => activate(p))
+  })
+}
+
+/* ---------- floating CTA ---------- */
+function initFloat() {
+  const btn = $('#floatCta')
+  const contact = $('#contacto')
+  let contactVisible = false
+  const update = () => btn.classList.toggle('show', scrollY > innerHeight * 4 && !contactVisible)
+  new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; update() }).observe(contact)
+  addEventListener('scroll', update, { passive: true })
+  update()
+}
+
 /* ---------- contact modal ---------- */
 function initModal() {
   const modal = $('#contactModal')
   const form = $('#contactForm')
   const open = (e) => {
     e?.preventDefault()
+    const target = ctaTarget()
+    if (target) { window.open(target, '_blank', 'noopener'); return }
     modal.classList.add('open')
     modal.setAttribute('aria-hidden', 'false')
     setTimeout(() => $('input', form)?.focus(), 50)
@@ -236,10 +302,28 @@ function initMeta() {
 
 safe('background', initBackground)
 safe('hero', initHero)
-safe('menu', initPillNav)
+safe('menu', initMenu)
 safe('reveal', initReveal)
 safe('logos', initLogos)
 safe('tech', initTech)
 safe('faq', initFaq)
 safe('modal', initModal)
 safe('meta', initMeta)
+safe('specular', () => {
+  $$('.btn-violet, .btn-outline, .btn-modern-light, .float-cta').forEach((b) => initSpecularButton(b, {
+    radius: 9999,
+    lineColor: '#ffffff',
+    baseColor: '#7aa5ff',
+    intensity: 1,
+    idleIntensity: 0.35,
+    shineSize: 10,
+    shineFade: 34,
+    thickness: 1.2,
+    glow: 1,
+    followMouse: true,
+    proximity: 250,
+  }))
+})
+safe('pillars', initPillars)
+safe('float', initFloat)
+safe('i18n', initI18n)

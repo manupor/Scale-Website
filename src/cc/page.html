@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#090a0c" />
   <meta name="description"
-    content="SCALE, firma internacional de desarrollo empresarial con base en Miami. Diagnosticamos, estructuramos y desarrollamos empresas y marcas preparadas para crecer." />
-  <title>SCALE — Firma de Desarrollo Empresarial | Miami</title>
+    content="SCALE brinda dirección y acompañamiento comercial. Identificamos qué está frenando tu negocio y ejecutamos la estrategia que necesita para avanzar: marca, marketing y ventas bajo una misma dirección." />
+  <title>SCALE · Dirección comercial</title>
   <link rel="icon" href="/scale-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,50 +24,80 @@
 
     <div class="home-content">
       <!-- nav -->
-      <header class="pill-nav-container" id="menu" aria-label="Navegación principal">
-        <nav class="pill-nav">
-          <a class="pill-logo" href="#home" aria-label="SCALE inicio">
-            <img src="/scale-logo.png" alt="SCALE" width="110" height="24" />
-          </a>
-          <div class="pill-nav-items desktop-only">
-            <ul class="pill-list" role="menubar">
-              <li role="none"><a role="menuitem" class="pill" href="#home">Inicio</a></li>
-              <li role="none"><a role="menuitem" class="pill" href="#services">Servicios</a></li>
-              <li role="none"><a role="menuitem" class="pill" href="#about-brand">Nosotros</a></li>
-              <li role="none"><a role="menuitem" class="pill" href="#process">Proceso</a></li>
-              <li role="none"><a role="menuitem" class="pill" href="#faq">Preguntas</a></li>
-            </ul>
-          </div>
-          <button class="pill pill-cta desktop-only" data-open-modal>Agendar diagnóstico</button>
-          <button class="mobile-menu-button mobile-only" aria-label="Abrir menú" aria-expanded="false">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-        </nav>
-        <div class="mobile-menu-popover mobile-only">
-          <ul class="mobile-menu-list">
-            <li><a class="mobile-menu-link" href="#home">Inicio</a></li>
-            <li><a class="mobile-menu-link" href="#services">Servicios</a></li>
-            <li><a class="mobile-menu-link" href="#about-brand">Nosotros</a></li>
-            <li><a class="mobile-menu-link" href="#process">Proceso</a></li>
-            <li><a class="mobile-menu-link" href="#faq">Preguntas</a></li>
-            <li><button class="mobile-menu-link is-cta" data-open-modal>Agendar diagnóstico</button></li>
-          </ul>
+      <div class="staggered-menu-wrapper" id="menu" style="--sm-accent: #5227FF">
+        <div class="sm-prelayers" aria-hidden="true">
+          <div class="sm-prelayer" style="background: #B497CF"></div>
+          <div class="sm-prelayer" style="background: #5227FF"></div>
         </div>
-      </header>
+        <header class="staggered-menu-header" aria-label="Navegación principal">
+          <a class="sm-logo" href="#inicio" aria-label="SCALE inicio">
+            <img src="/scale-logo.png" alt="SCALE" class="sm-logo-img" draggable="false" width="110" height="24" />
+          </a>
+          <button class="sm-toggle" type="button" aria-label="Menú" aria-expanded="false"
+            aria-controls="staggered-menu-panel">
+            <span class="sm-toggle-textWrap" aria-hidden="true">
+              <span class="sm-toggle-textInner"></span>
+            </span>
+            <span class="sm-icon" aria-hidden="true">
+              <span class="sm-icon-line"></span>
+              <span class="sm-icon-line sm-icon-line-v"></span>
+            </span>
+          </button>
+        </header>
+        <aside id="staggered-menu-panel" class="staggered-menu-panel" aria-hidden="true">
+          <div class="sm-panel-bg" id="menuFibers" aria-hidden="true"></div>
+          <nav class="sm-panel-inner" aria-label="Secciones">
+            <ul class="sm-panel-list" role="list">
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#inicio"><span class="sm-panel-itemLabel"
+                    data-i18n="nav1">Inicio</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#acompanamiento"><span
+                    class="sm-panel-itemLabel" data-i18n="nav2">Acompañamiento</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#servicios"><span class="sm-panel-itemLabel"
+                    data-i18n="nav6">Servicios</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#por-que"><span class="sm-panel-itemLabel"
+                    data-i18n="nav7">Por qué SCALE</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#equipo"><span class="sm-panel-itemLabel"
+                    data-i18n="nav3">Nosotros</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#metodo"><span class="sm-panel-itemLabel"
+                    data-i18n="nav4">Método SCALE</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#faq"><span class="sm-panel-itemLabel"
+                    data-i18n="nav8">Preguntas</span></a></li>
+              <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#contacto"><span class="sm-panel-itemLabel"
+                    data-i18n="nav5">Contacto</span></a></li>
+            </ul>
+            <div class="sm-extras">
+              <div class="lang-toggle sm-extra" role="group" aria-label="Idioma">
+                <button type="button" data-lang="es" aria-pressed="true">ES</button>
+                <button type="button" data-lang="en" aria-pressed="false">EN</button>
+              </div>
+              <button class="sm-cta sm-extra" type="button" data-open-modal data-i18n="cta">Agendar diagnóstico</button>
+            </div>
+            <div class="sm-socials" aria-label="Redes sociales">
+              <h3 class="sm-socials-title" data-i18n="smSoc">Redes</h3>
+              <ul class="sm-socials-list" role="list">
+                <li><a class="sm-socials-link" href="https://instagram.com/scaleagency_co/" target="_blank"
+                    rel="noopener noreferrer">Instagram</a></li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+      </div>
 
       <!-- cinematic hero -->
-      <div class="cc-hero" id="home">
+      <div class="cc-hero" id="inicio">
 
         <div class="cc-hero-text">
-          <h1 class="cc-text-track gsap-reveal text-3d-matte">No se improvisa.</h1>
-          <h1 class="cc-text-days gsap-reveal text-silver-matte">Su marca se cultiva.</h1>
+          <h1 class="cc-text-track gsap-reveal text-3d-matte" data-i18n="h1a">Dirección comercial</h1>
+          <h1 class="cc-text-days gsap-reveal text-silver-matte"><span data-i18n="h1b">para impulsar el
+              crecimiento</span><br><span data-i18n="h1c">de tu empresa.</span></h1>
         </div>
 
         <div class="cc-cta-wrapper gsap-reveal">
-          <h2 class="text-silver-matte">Cultivemos su marca.</h2>
-          <p>Diagnóstico, estructura y crecimiento como un solo sistema.</p>
-          <button class="btn-modern-light" data-open-modal>Agendar diagnóstico</button>
+          <h2 class="text-silver-matte" data-i18n="bandH">Conversemos sobre el siguiente paso de tu empresa.</h2>
+          <p data-i18n="bandP">Agendá una primera reunión sin costo para conocer tu negocio y evaluar cómo podemos
+            acompañarte.</p>
+          <button class="btn-modern-light" data-open-modal data-i18n="cta">Agendar diagnóstico</button>
+          <span class="free-note" data-i18n="free">Primera reunión sin costo.</span>
         </div>
 
         <div class="cc-card-stage">
@@ -92,7 +122,7 @@
                         <div class="laptop-body">
                           <div class="cc-phone-widget phone-head">
                             <div>
-                              <span class="ph-kicker">Diagnóstico</span>
+                              <span class="ph-kicker" data-i18n="y1g">Diagnóstico</span>
                               <span class="ph-title">SCALE</span>
                             </div>
                             <div class="ph-avatar">SC</div>
@@ -108,7 +138,7 @@
                               </svg>
                               <div class="ring-center">
                                 <span class="cc-counter-val">0</span>
-                                <span class="ring-label">Capacidades</span>
+                                <span class="ring-label">S·C·A·L·E</span>
                               </div>
                             </div>
 
@@ -121,8 +151,8 @@
                                     <circle cx="12" cy="12" r="2" />
                                   </svg></div>
                                 <div>
-                                  <p class="w-title">Estrategia de negocio</p>
-                                  <p class="w-sub">diagnóstico &amp; modelo</p>
+                                  <p class="w-title" data-i18n="f1t">Una misma dirección.</p>
+                                  <p class="w-sub" data-i18n="f1d">Marca, marketing y ventas conectados.</p>
                                 </div>
                               </div>
                               <div class="cc-phone-widget widget-depth">
@@ -132,8 +162,9 @@
                                       d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
                                   </svg></div>
                                 <div>
-                                  <p class="w-title">Marca y contenido</p>
-                                  <p class="w-sub">posicionamiento &amp; narrativa</p>
+                                  <p class="w-title" data-i18n="f2t">Estrategia y ejecución.</p>
+                                  <p class="w-sub" data-i18n="f2d">Un equipo comercial que implementa lo que tu empresa
+                                    necesita.</p>
                                 </div>
                               </div>
                               <div class="cc-phone-widget widget-depth">
@@ -145,8 +176,9 @@
                                     <path d="M8 17v-3" />
                                   </svg></div>
                                 <div>
-                                  <p class="w-title">Ventas, datos y tecnología</p>
-                                  <p class="w-sub">CRM &amp; automatización</p>
+                                  <p class="w-title" data-i18n="f3t">Decisiones con datos.</p>
+                                  <p class="w-sub" data-i18n="f3d">Seguimiento semanal y revisión mensual de resultados.
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -159,44 +191,64 @@
               </div>
 
               <div class="cc-card-left gsap-reveal">
-                <h3>Crecer sin raíz es ruido.</h3>
-                <p><span class="strong">SCALE</span> alinea estrategia, marca, ventas, datos y tecnología para que su
-                  negocio crezca con estructura.</p>
+                <p data-i18n="heroP">Identificamos qué está frenando tu negocio y ejecutamos la estrategia que necesita
+                  para avanzar. Marca, marketing y ventas, conectados bajo una misma dirección comercial.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- brand definition -->
-      <section id="about-brand" class="cc-section brand-def" aria-label="Qué es SCALE">
+      <!-- statement -->
+      <section class="cc-section statement" aria-labelledby="stH">
         <div class="container">
           <div class="grid-2 reveal">
             <div>
-              <p class="eyebrow">Qué es SCALE</p>
-              <h2 class="h-md">Una firma de desarrollo empresarial con base en Miami.</h2>
-              <p class="body-muted">SCALE diagnostica, estructura y desarrolla empresas y marcas preparadas para crecer.
-                Alineamos estrategia, contenido, ventas, datos y tecnología como un solo sistema. Primero la raíz,
-                después la altura.</p>
+              <h2 class="h-md" id="stH" data-i18n="stH">El crecimiento necesita dirección.</h2>
+            </div>
+            <div>
+              <p class="lead-lg" data-i18n="stP1">Tu empresa ya vende. Para seguir creciendo, necesitás identificar
+                dónde se están perdiendo oportunidades, definir prioridades y ejecutar con claridad.</p>
+              <p class="body-muted" data-i18n="stP2">En SCALE diagnosticamos el negocio y dirigimos las acciones
+                comerciales según sus necesidades, su capacidad y sus objetivos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- what is SCALE -->
+      <section id="acompanamiento" class="cc-section brand-def" aria-labelledby="qH">
+        <div class="container">
+          <div class="grid-2 reveal">
+            <div>
+              <p class="eyebrow" data-i18n="k1">Qué es SCALE</p>
+              <h2 class="h-md" id="qH" data-i18n="qH">El equipo que dirige y ejecuta tu estrategia comercial.</h2>
+              <p class="body-muted" data-i18n="qP1">SCALE brinda acompañamiento comercial a empresas que ya tienen una
+                oferta validada y buscan crecer con mayor estructura.</p>
+              <p class="body-muted" data-i18n="qP2">Analizamos cómo se presenta tu negocio, cómo atrae oportunidades y
+                qué sucede hasta concretar una venta. Identificamos los cuellos de botella, definimos qué necesita
+                atención y nuestro equipo desarrolla y ejecuta una estrategia ajustada a tu empresa.</p>
             </div>
             <div class="pillars">
               <div class="pillar"><span class="pillar-n">01</span>
                 <div>
-                  <h3>Primero la raíz</h3>
-                  <p>Antes de hacer más, entendemos qué frena a su empresa. Atacamos el obstáculo real, no sus síntomas.
-                  </p>
+                  <h3 data-i18n="s1t">Diagnóstico y dirección comercial</h3>
+                  <p data-i18n="s1d">Entendemos tu operación, identificamos dónde se frena el crecimiento y establecemos
+                    las prioridades de trabajo.</p>
                 </div>
               </div>
               <div class="pillar"><span class="pillar-n">02</span>
                 <div>
-                  <h3>Un solo sistema</h3>
-                  <p>Estrategia, marca, ventas, datos y tecnología conectados. Nada funciona aislado.</p>
+                  <h3 data-i18n="s2t">Implementación y ejecución</h3>
+                  <p data-i18n="s2d">Conectamos posicionamiento, contenido, publicidad, atención comercial y procesos
+                    según lo que necesita el negocio.</p>
                 </div>
               </div>
               <div class="pillar"><span class="pillar-n">03</span>
                 <div>
-                  <h3>Evidencia, no intuición</h3>
-                  <p>Los datos deciden dónde invertir. Concentramos recursos en lo que realmente funciona.</p>
+                  <h3 data-i18n="s3t">Medición y mejora</h3>
+                  <p data-i18n="s3d">Damos seguimiento a la implementación, revisamos resultados y ajustamos las
+                    decisiones con base en los datos.</p>
                 </div>
               </div>
             </div>
@@ -204,35 +256,68 @@
         </div>
       </section>
 
-      <!-- client logos → who we work with -->
-      <section class="cc-section logos">
+      <!-- client logos (replace chips with authorized logos) -->
+      <section class="cc-section logos" aria-labelledby="logosH">
         <div class="logos-fade" aria-hidden="true"></div>
         <div class="logos-title">
-          <p>Empresas y marcas con las que trabajamos</p>
+          <h2 id="logosH" data-i18n="lgH">Empresas que confían en SCALE.</h2>
         </div>
         <div class="logos-viewport" id="logosViewport">
           <div class="logos-track" id="logosTrack">
-            <div class="logo-chip">Empresas en crecimiento</div>
-            <div class="logo-chip">Marcas de lujo</div>
-            <div class="logo-chip">Agentes inmobiliarios</div>
-            <div class="logo-chip">Profesionales de alto valor</div>
-            <div class="logo-chip">Firmas de servicios</div>
-            <div class="logo-chip">Estados Unidos</div>
-            <div class="logo-chip">Latinoamérica</div>
+            <div class="logo-chip"><img src="/logos/AROGON SPORT.svg" alt="Arogon Sport" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/BLU.svg" alt="BLU" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/CERVECERIA DE BARRIO.svg" alt="Cervecería de Barrio"
+                loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/DR ANTIAGE.svg" alt="Dr Antiage" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/GRUPO PREVENTIVO.svg" alt="Grupo Preventivo" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/JG ARQUITECTOS.svg" alt="JG Arquitectos" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/MALUCO.svg" alt="Maluco" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/Natural Season.svg" alt="Natural Season" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/PREMIUM SPIRITS.svg" alt="Premium Spirits" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/RIVIERA.svg" alt="Riviera" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/ROWAL.svg" alt="Rowal" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/SANDOVAL Y SANDOVAL.svg" alt="Sandoval y Sandoval" loading="lazy" />
+            </div>
+            <div class="logo-chip"><img src="/logos/TA TRAIL ADVENTURE.svg" alt="TA Trail Adventure" loading="lazy" />
+            </div>
+            <div class="logo-chip"><img src="/logos/ULU.svg" alt="ULU" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/OLAVIVO.png" alt="Olaviivo" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/aws.svg" alt="AWS" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/compre en china.svg" alt="Compre en China" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/hooligans.svg" alt="Hooligans" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/kokoy.svg" alt="Kokoy" loading="lazy" /></div>
+            <div class="logo-chip"><img src="/logos/primo.svg" alt="Primo" loading="lazy" /></div>
           </div>
         </div>
       </section>
 
-      <!-- services -->
-      <section id="services" class="cc-section services" aria-label="Servicios de desarrollo empresarial">
+      <!-- what we do -->
+      <section id="servicios" class="cc-section services" aria-labelledby="wH">
         <div class="services-tint" aria-hidden="true"></div>
         <div class="container rel">
           <div class="section-head reveal">
-            <p class="eyebrow">Servicios</p>
-            <h2 class="h-lg">Diagnosticar, estructurar<br><span class="gradient-text">y escalar.</span></h2>
+            <p class="eyebrow" data-i18n="k2">Lo que hacemos</p>
+            <h2 class="h-lg" id="wH" data-i18n="wH">Las áreas que conectamos para impulsar tu crecimiento.</h2>
+            <p class="body-muted narrow" data-i18n="wP">El alcance del acompañamiento se define según el diagnóstico y
+              las necesidades de tu empresa.</p>
           </div>
 
           <div class="services-grid reveal">
+            <div class="service-card">
+              <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path
+                    d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                </svg></div>
+              <div>
+                <div class="service-title">
+                  <h3 data-i18n="v1t">Posicionamiento, marca y comunicación</h3><span class="tag"
+                    data-i18n="v1g">Percepción de valor</span>
+                </div>
+                <p data-i18n="v1d">Alineamos la imagen y el mensaje de tu empresa con el nivel de lo que ofrecés, para
+                  que el cliente correcto entienda su valor y encuentre razones para elegirte.</p>
+              </div>
+            </div>
             <div class="service-card">
               <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -242,22 +327,11 @@
                 </svg></div>
               <div>
                 <div class="service-title">
-                  <h3>Estrategia de negocio</h3><span class="tag">Diagnóstico</span>
+                  <h3 data-i18n="v2t">Contenido y campañas publicitarias</h3><span class="tag" data-i18n="v2g">Atracción
+                    de oportunidades</span>
                 </div>
-                <p>Diagnóstico del modelo, la oferta y el mercado para encontrar qué frena realmente su crecimiento.</p>
-              </div>
-            </div>
-            <div class="service-card">
-              <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path
-                    d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                </svg></div>
-              <div>
-                <div class="service-title">
-                  <h3>Marca y contenido</h3><span class="tag">Narrativa</span>
-                </div>
-                <p>Posicionamiento, narrativa e identidad que comunican su valor con una sola voz.</p>
+                <p data-i18n="v2d">Desarrollamos contenido y campañas que comunican tus diferenciales, generan interés y
+                  llevan a los prospectos al siguiente paso comercial.</p>
               </div>
             </div>
             <div class="service-card">
@@ -268,9 +342,11 @@
                 </svg></div>
               <div>
                 <div class="service-title">
-                  <h3>Adquisición y ventas</h3><span class="tag">CRM</span>
+                  <h3 data-i18n="v3t">Atención comercial, seguimiento y cierre</h3><span class="tag"
+                    data-i18n="v3g">Conversión</span>
                 </div>
-                <p>Embudos, CRM y seguimiento que convierten atención en clientes de forma medible.</p>
+                <p data-i18n="v3d">Trabajamos la atención de prospectos, los argumentos comerciales y el seguimiento
+                  para mejorar el recorrido desde la primera consulta hasta la decisión de compra.</p>
               </div>
             </div>
             <div class="service-card">
@@ -283,31 +359,36 @@
                 </svg></div>
               <div>
                 <div class="service-title">
-                  <h3>Datos y tecnología</h3><span class="tag">Automatización</span>
+                  <h3 data-i18n="v4t">CRM, procesos y gestión comercial</h3><span class="tag" data-i18n="v4g">Orden y
+                    control</span>
                 </div>
-                <p>Medición, tableros y automatización cuando la evidencia lo valida, no antes.</p>
+                <p data-i18n="v4d">Estructuramos el seguimiento de oportunidades, los procesos y las responsabilidades
+                  del equipo. Revisamos métricas y proyecciones para orientar las decisiones comerciales.</p>
               </div>
             </div>
           </div>
 
           <div class="services-foot reveal">
-            <button class="btn-violet" data-open-modal>Agendar diagnóstico</button>
-            <span>También: procesos comerciales, documentación y acompañamiento continuo.</span>
+            <button class="btn-violet" data-open-modal data-i18n="cta">Agendar diagnóstico</button>
+            <span data-i18n="svcFoot">¿No sabés por dónde empezar? Eso es justamente lo que define el
+              diagnóstico.</span>
           </div>
         </div>
       </section>
 
-      <!-- big statement -->
-      <section class="cc-section big">
+      <!-- transformation -->
+      <section class="cc-section big" aria-labelledby="tH">
         <div class="big-tint" aria-hidden="true"></div>
         <div class="container rel">
           <div class="grid-2 center">
             <div class="reveal">
-              <h2 class="h-xl">Crecer sin raíz<br><span class="gradient-text">es ruido.</span><br>Estructura primero.
-              </h2>
-              <p class="big-p">Vender más no alcanza. Si la estructura no acompaña, crecer solo amplifica el desorden.
-              </p>
-              <button class="btn-outline" data-open-modal>Agendar diagnóstico
+              <h2 class="h-xl" id="tH" data-i18n="tH">De un negocio que ya vende a una empresa con dirección para
+                crecer.</h2>
+              <p class="big-p" data-i18n="tP1">Cuando la marca, la publicidad y las ventas trabajan de forma
+                desconectada, se pierden oportunidades.</p>
+              <p class="big-p" data-i18n="tP2">En SCALE las alineamos bajo una estrategia comercial y ejecutamos las
+                acciones que tu empresa necesita para avanzar.</p>
+              <button class="btn-outline" data-open-modal><span data-i18n="cta">Agendar diagnóstico</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
@@ -316,13 +397,26 @@
             </div>
             <div class="big-visual reveal">
               <div class="float">
-                <div class="method-card">
-                  <div class="mc-head"><span>Método</span><span>S.C.A.L.E.</span></div>
-                  <div class="mc-row" style="--c:#8c55ff"><b>S</b><span>Strategy</span><i>Estrategia</i></div>
-                  <div class="mc-row" style="--c:#8c55ff"><b>C</b><span>Content</span><i>Contenido</i></div>
-                  <div class="mc-row" style="--c:#8c55ff"><b>A</b><span>Acquisition</span><i>Adquisición</i></div>
-                  <div class="mc-row" style="--c:#8c55ff"><b>L</b><span>Learning</span><i>Aprendizaje</i></div>
-                  <div class="mc-row" style="--c:#8c55ff"><b>E</b><span>Expansion</span><i>Expansión</i></div>
+                <div class="method-card flow-card">
+                  <ol class="flow-list">
+                    <li class="mc-row flow-row" style="--c:#8c55ff"><b>01</b>
+                      <div><span data-i18n="fl1t">Diagnóstico</span><i data-i18n="fl1d">Entender dónde está el
+                          negocio.</i></div>
+                    </li>
+                    <li class="mc-row flow-row" style="--c:#8c55ff"><b>02</b>
+                      <div><span data-i18n="fl2t">Ejecución</span><i data-i18n="fl2d">Convertir prioridades en
+                          acciones.</i></div>
+                    </li>
+                    <li class="mc-row flow-row" style="--c:#8c55ff"><b>03</b>
+                      <div><span data-i18n="fl3t">Medición</span><i data-i18n="fl3d">Decidir con base en resultados.</i>
+                      </div>
+                    </li>
+                  </ol>
+                  <p class="flow-loop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 12a9 9 0 1 1-3-6.7L21 8" />
+                      <path d="M21 3v5h-5" />
+                    </svg><span data-i18n="loop">Cada ciclo de resultados alimenta el siguiente diagnóstico.</span></p>
                 </div>
               </div>
             </div>
@@ -330,17 +424,16 @@
         </div>
       </section>
 
-      <!-- why us -->
-      <section id="about" class="cc-section why">
+      <!-- why SCALE -->
+      <section id="por-que" class="cc-section why" aria-labelledby="yH">
         <div class="container rel">
           <div class="grid-2 why-grid">
             <div class="why-claim reveal">
-              <p class="eyebrow">Por qué SCALE</p>
-              <h2 class="h-why">Crecer sin estructura <span class="gradient-text">solo amplifica el desorden.</span>
-              </h2>
-              <p class="body-muted narrow">Antes de hacer más, entendemos qué frena a su empresa. Atacamos el obstáculo
-                real, no sus síntomas.</p>
-              <button class="btn-violet" data-open-modal>Agendar diagnóstico
+              <p class="eyebrow" data-i18n="k3">Por qué SCALE</p>
+              <h2 class="h-why" id="yH" data-i18n="yH">Claridad para decidir. Equipo para ejecutar.</h2>
+              <p class="body-muted narrow" data-i18n="yP">Acompañamos a tu empresa desde el diagnóstico hasta la
+                implementación y el seguimiento. Cada acción responde a una necesidad comercial identificada.</p>
+              <button class="btn-violet" data-open-modal><span data-i18n="cta">Agendar diagnóstico</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
@@ -351,35 +444,31 @@
               <div class="why-row"><span class="why-n">01</span>
                 <div>
                   <div class="row-title">
-                    <h3>Primero la raíz</h3><span class="tag strong">Diagnóstico</span>
+                    <h3 data-i18n="y1t">Primero entendemos el negocio.</h3><span class="tag strong"
+                      data-i18n="y1g">Diagnóstico</span>
                   </div>
-                  <p>Antes de hacer más, entendemos qué frena a su empresa. Atacamos el obstáculo real, no sus síntomas.
-                  </p>
+                  <p data-i18n="y1d">Analizamos tu situación antes de definir acciones. Buscamos los puntos que están
+                    limitando el crecimiento y priorizamos lo que necesita atención.</p>
                 </div>
               </div>
               <div class="why-row"><span class="why-n">02</span>
                 <div>
                   <div class="row-title">
-                    <h3>Un solo sistema</h3><span class="tag strong">7 capacidades</span>
+                    <h3 data-i18n="y2t">Ejecutamos con nuestro equipo.</h3><span class="tag strong"
+                      data-i18n="y2g">Implementación</span>
                   </div>
-                  <p>Estrategia, marca, ventas, datos y tecnología conectados. Nada funciona aislado.</p>
+                  <p data-i18n="y2d">Llevamos la estrategia a la práctica con un equipo comercial propio y un alcance
+                    ajustado a las necesidades de tu empresa.</p>
                 </div>
               </div>
               <div class="why-row"><span class="why-n">03</span>
                 <div>
                   <div class="row-title">
-                    <h3>Evidencia, no intuición</h3><span class="tag strong">Datos</span>
+                    <h3 data-i18n="y3t">Los resultados orientan las decisiones.</h3><span class="tag strong"
+                      data-i18n="y3g">Seguimiento</span>
                   </div>
-                  <p>Los datos deciden dónde invertir. Concentramos recursos en lo que realmente funciona.</p>
-                </div>
-              </div>
-              <div class="why-row"><span class="why-n">04</span>
-                <div>
-                  <div class="row-title">
-                    <h3>Cinco etapas, un orden</h3><span class="tag strong">S.C.A.L.E.</span>
-                  </div>
-                  <p>De la estrategia a la expansión, sin saltar pasos. Tecnología solo cuando la evidencia lo valida.
-                  </p>
+                  <p data-i18n="y3d">Damos seguimiento semanal a la ejecución y revisamos los resultados cada mes.
+                    Evaluamos qué funciona, qué necesita ajustes y cuáles son los próximos pasos.</p>
                 </div>
               </div>
             </div>
@@ -387,170 +476,229 @@
         </div>
       </section>
 
-      <!-- credibility -->
-      <section class="cc-section cred">
+      <!-- team -->
+      <section id="equipo" class="cc-section team" aria-labelledby="eH">
         <div class="container">
-          <div class="cred-row reveal">
-            <div class="cred-left">
-              <p class="eyebrow">Respaldo</p>
-              <h2 class="h-md">Una firma, no un proveedor más.</h2>
-              <div class="author">
-                <span class="author-avatar"><img src="/scale-logo.png" alt="SCALE" /></span>
-                <p>SCALE trabaja desde <span class="strong">Miami</span> con empresas en Estados Unidos y
-                  Latinoamérica, integrando estrategia, marca, ventas, datos y tecnología en un solo equipo.</p>
-              </div>
-            </div>
-            <div class="cred-points">
-              <div class="cred-point"><span class="bar"></span>
-                <div>
-                  <p class="cp-label">Base en Miami</p>
-                  <p class="cp-sub">Clientes en EE. UU. y Latinoamérica</p>
-                </div>
-              </div>
-              <div class="cred-point"><span class="bar"></span>
-                <div>
-                  <p class="cp-label">Método S.C.A.L.E.</p>
-                  <p class="cp-sub">Cinco etapas, un orden</p>
-                </div>
-              </div>
-              <div class="cred-point"><span class="bar"></span>
-                <div>
-                  <p class="cp-label">Diagnóstico primero</p>
-                  <p class="cp-sub">Antes de proponer, entendemos</p>
-                </div>
-              </div>
-            </div>
+          <div class="section-head reveal">
+            <p class="eyebrow" data-i18n="k4">Detrás del trabajo</p>
+            <h2 class="h-lg" id="eH" data-i18n="eH">El equipo detrás del crecimiento de tu empresa.</h2>
+            <p class="body-muted narrow" data-i18n="eP">Conectamos dirección comercial, marca, tecnología, producción y
+              ventas para ejecutar la estrategia que tu negocio necesita.</p>
           </div>
+          <ul class="team-grid reveal">
+            <li class="member"><img class="member-photo" src="/team/gerardo.jpg" alt="Gerardo Murillo" loading="lazy" />
+              <div>
+                <p class="member-name">Gerardo Murillo</p>
+                <p class="member-role" data-i18n="rFounder">Fundador</p>
+              </div>
+            </li>
+            <li class="member"><img class="member-photo" src="/team/vanvas.jpg" alt="Vanvas Ureña" loading="lazy" />
+              <div>
+                <p class="member-name">Vanvas Ureña</p>
+                <p class="member-role" data-i18n="rFounder">Fundador</p>
+              </div>
+            </li>
+            <li class="member"><img class="member-photo" src="/team/teresa.jpg" alt="María Teresa Rodriguez"
+                loading="lazy" />
+              <div>
+                <p class="member-name">María Teresa Rodriguez</p>
+                <p class="member-role" data-i18n="r3">Vocera</p>
+              </div>
+            </li>
+            <li class="member"><img class="member-photo" src="/team/manuel.jpg" alt="Manuel Portuguez" loading="lazy" />
+              <div>
+                <p class="member-name">Manuel Portuguez</p>
+                <p class="member-role" data-i18n="r4">Desarrollo digital y software</p>
+              </div>
+            </li>
+            <li class="member"><img class="member-photo" src="/team/adrian.jpg" alt="Adrian Alvarez" loading="lazy" />
+              <div>
+                <p class="member-name">Adrian Alvarez</p>
+                <p class="member-role" data-i18n="r5">Estructuras administrativas</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- how it works -->
-      <section id="process" class="cc-section how">
+      <!-- SCALE method -->
+      <section id="metodo" class="cc-section how" aria-labelledby="mH">
         <div class="container">
           <div class="section-head centered reveal">
-            <p class="eyebrow">Proceso</p>
-            <h2 class="h-lg">Del primer contacto <span class="gradient-text">al crecimiento.</span></h2>
-            <p class="how-sub">Un proceso claro, con entregables visibles en cada paso. Sin burocracia y sin sorpresas.
+            <p class="eyebrow" data-i18n="k5">Método SCALE</p>
+            <h2 class="h-lg" id="mH" data-i18n="mH">Cinco pilares para dirigir el crecimiento de tu empresa.</h2>
+            <p class="how-sub" data-i18n="mP">SCALE significa Strategy, Content, Acquisition, Learning y Expansion.
+              Estos cinco pilares conectan el diagnóstico, la ejecución y la mejora continua de tu estrategia comercial.
             </p>
           </div>
-          <div class="steps-grid reveal">
-            <div class="step"><span class="step-n">01</span>
-              <div>
-                <h3>Llamada de diagnóstico</h3>
-                <p>Entendemos su negocio, su mercado y sus metas en una conversación de 30 a 60 minutos.</p>
-              </div>
-            </div>
-            <div class="step"><span class="step-n">02</span>
-              <div>
-                <h3>Estrategia y prioridades</h3>
-                <p>Definimos el obstáculo real, el posicionamiento y un plan priorizado antes de ejecutar.</p>
-              </div>
-            </div>
-            <div class="step"><span class="step-n">03</span>
-              <div>
-                <h3>Estructura y marca</h3>
-                <p>Narrativa, identidad y activos que comunican su valor con coherencia.</p>
-              </div>
-            </div>
-            <div class="step"><span class="step-n">04</span>
-              <div>
-                <h3>Implementación</h3>
-                <p>Embudos, CRM y procesos comerciales construidos y conectados entre sí.</p>
-              </div>
-            </div>
-            <div class="step"><span class="step-n">05</span>
-              <div>
-                <h3>Medición y ajuste</h3>
-                <p>Tableros y revisiones periódicas: invertimos más en lo que funciona.</p>
-              </div>
-            </div>
-            <div class="step"><span class="step-n">06</span>
-              <div>
-                <h3>Escala y acompañamiento</h3>
-                <p>Automatizamos lo validado y acompañamos el crecimiento con planes continuos.</p>
-              </div>
-            </div>
+          <div class="method-pillars reveal" id="methodPillars">
+            <button type="button" class="m-pillar active" aria-expanded="true">
+              <span class="m-letter">S</span>
+              <span class="m-en">Strategy</span>
+              <span class="m-title" data-i18n="p1t">Estrategia</span>
+              <span class="m-desc" data-i18n="p1d">Entendemos tu negocio, identificamos los cuellos de botella y
+                definimos las prioridades. Establecemos qué necesita tu empresa, hacia dónde avanzar y qué acciones
+                ejecutar.</span>
+            </button>
+            <button type="button" class="m-pillar" aria-expanded="false">
+              <span class="m-letter">C</span>
+              <span class="m-en">Content</span>
+              <span class="m-title" data-i18n="p2t">Contenido</span>
+              <span class="m-desc" data-i18n="p2d">Traducimos el valor de tu negocio en una comunicación clara.
+                Alineamos marca, mensaje y contenido para fortalecer tu posicionamiento y generar interés en el cliente
+                correcto.</span>
+            </button>
+            <button type="button" class="m-pillar" aria-expanded="false">
+              <span class="m-letter">A</span>
+              <span class="m-en">Acquisition</span>
+              <span class="m-title" data-i18n="p3t">Adquisición</span>
+              <span class="m-desc" data-i18n="p3d">Conectamos las campañas con la atención comercial, el seguimiento y
+                el cierre. Trabajamos el recorrido completo para convertir el interés en oportunidades de venta.</span>
+            </button>
+            <button type="button" class="m-pillar" aria-expanded="false">
+              <span class="m-letter">L</span>
+              <span class="m-en">Learning</span>
+              <span class="m-title" data-i18n="p4t">Aprendizaje</span>
+              <span class="m-desc" data-i18n="p4d">Medimos, interpretamos y ajustamos. El seguimiento semanal y la
+                revisión mensual nos permiten entender qué funciona, dónde se pierden oportunidades y qué debemos
+                mejorar.</span>
+            </button>
+            <button type="button" class="m-pillar" aria-expanded="false">
+              <span class="m-letter">E</span>
+              <span class="m-en">Expansion</span>
+              <span class="m-title" data-i18n="p5t">Expansión</span>
+              <span class="m-desc" data-i18n="p5d">Con base en los resultados y la capacidad de tu empresa, definimos
+                las siguientes oportunidades de crecimiento. Reforzamos lo que funciona y preparamos la operación
+                comercial para sostener el avance.</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- tech marquee → capabilities -->
-      <section class="cc-section tech" aria-label="Capacidades integradas">
+      <!-- connected areas marquee -->
+      <section class="cc-section tech" aria-labelledby="areasL">
         <div class="logos-fade" aria-hidden="true"></div>
         <div class="tech-title">
-          <p>Capacidades integradas</p>
+          <p id="areasL" data-i18n="arL">Áreas conectadas bajo una misma dirección</p>
         </div>
         <div class="tech-viewport">
           <div class="tech-track">
-            <div class="tech-chip"><b>S</b><span>Strategy</span></div>
-            <div class="tech-chip"><b>C</b><span>Content</span></div>
-            <div class="tech-chip"><b>A</b><span>Acquisition</span></div>
-            <div class="tech-chip"><b>L</b><span>Learning</span></div>
-            <div class="tech-chip"><b>E</b><span>Expansion</span></div>
-            <div class="tech-chip"><b>CRM</b><span>CRM</span></div>
-            <div class="tech-chip"><b>Au</b><span>Automatización</span></div>
-            <div class="tech-chip"><b>Da</b><span>Datos</span></div>
-            <div class="tech-chip"><b>Br</b><span>Branding</span></div>
-            <div class="tech-chip"><b>Ve</b><span>Ventas</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a1">Dirección comercial</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a2">Posicionamiento</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a3">Branding</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a4">Contenido</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a5">Publicidad digital</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a6">Atención de prospectos</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a7">Seguimiento y cierre</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a8">CRM</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a9">Procesos</span></div>
+            <div class="tech-chip area-chip"><span data-i18n="a10">Métricas y proyecciones</span></div>
           </div>
         </div>
       </section>
 
       <!-- faq -->
-      <section id="faq" class="cc-section faq">
+      <section id="faq" class="cc-section faq" aria-labelledby="qqH">
         <div class="container narrow-3xl">
           <div class="section-head centered faq-head reveal">
-            <p class="eyebrow">Preguntas</p>
-            <h2 class="h-md">Preguntas <span class="gradient-text">frecuentes.</span></h2>
+            <p class="eyebrow" data-i18n="k6">Preguntas frecuentes</p>
+            <h2 class="h-md" id="qqH" data-i18n="qqH">Lo que necesitás saber antes de empezar.</h2>
+            <p class="how-sub" data-i18n="qqP">Si tu pregunta no está aquí, la respondemos en la primera reunión.</p>
           </div>
           <div class="faq-list reveal" id="faqList">
-            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Con qué tipo de empresas
-                  trabajan?</span><i class="pm"></i></button>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q1">¿Qué hace SCALE
+                  exactamente?</span><i class="pm"></i></button>
               <div class="faq-a">
-                <p>Empresas en crecimiento, marcas de lujo, agentes inmobiliarios y profesionales de alto valor que
-                  necesitan estructura para escalar.</p>
+                <p data-i18n="a1x">Brindamos acompañamiento comercial. Diagnosticamos el negocio, identificamos sus
+                  cuellos de botella y definimos y ejecutamos una estrategia para impulsar su crecimiento. El alcance
+                  puede incluir marca, marketing, ventas, procesos y medición.</p>
               </div>
             </div>
-            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Por dónde empieza el
-                  trabajo?</span><i class="pm"></i></button>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q2">¿Para qué tipo de
+                  empresas es este acompañamiento?</span><i class="pm"></i></button>
               <div class="faq-a">
-                <p>Siempre por un diagnóstico. Antes de proponer acciones identificamos qué frena realmente su
-                  crecimiento.</p>
+                <p data-i18n="a2x">Para empresas con un producto o servicio validado, ventas actuales y capacidad para
+                  atender más clientes. Especialmente cuando necesitan elevar su imagen, ordenar su estrategia o mejorar
+                  su ejecución comercial.</p>
               </div>
             </div>
-            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Trabajan solo en
-                  Miami?</span><i class="pm"></i></button>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q3">¿SCALE también
+                  ejecuta la estrategia?</span><i class="pm"></i></button>
               <div class="faq-a">
-                <p>Tenemos base en Miami y trabajamos con clientes en Estados Unidos y Latinoamérica, de forma remota o
-                  presencial.</p>
+                <p data-i18n="a3x">Sí. Definimos y ejecutamos las acciones con nuestro equipo comercial, según el
+                  alcance acordado y las necesidades de la empresa.</p>
               </div>
             </div>
-            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Cuánto tarda en verse un
-                  resultado?</span><i class="pm"></i></button>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q4">¿Todas las empresas
+                  reciben el mismo servicio?</span><i class="pm"></i></button>
               <div class="faq-a">
-                <p>Las prioridades quedan claras desde las primeras semanas. Los resultados comerciales dependen de cada
-                  etapa, y los medimos desde el inicio.</p>
+                <p data-i18n="a4x">No. El acompañamiento se ajusta al diagnóstico. Determinamos qué áreas requieren
+                  intervención y cuáles son las prioridades antes de establecer el alcance.</p>
               </div>
             </div>
-            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Necesito todas las etapas del
-                  método?</span><i class="pm"></i></button>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q5">¿Cómo dan seguimiento
+                  a los resultados?</span><i class="pm"></i></button>
               <div class="faq-a">
-                <p>No siempre. El diagnóstico define en qué etapa está su empresa y desde dónde conviene empezar.</p>
+                <p data-i18n="a5x">Realizamos un seguimiento semanal y una revisión mensual con reporte, lectura de
+                  métricas y próximos pasos. Los indicadores se definen según los objetivos y las áreas que estemos
+                  trabajando.</p>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q6">¿Trabajan con
+                  empresas fuera de Costa Rica?</span><i class="pm"></i></button>
+              <div class="faq-a">
+                <p data-i18n="a6x">Sí. Acompañamos empresas en México, Latinoamérica y Estados Unidos. SCALE cuenta
+                  también con base en Miami.</p>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q7">¿Cuánto cuesta y
+                  cuánto dura el acompañamiento?</span><i class="pm"></i></button>
+              <div class="faq-a">
+                <p data-i18n="a7x">La inversión y la duración se definen según las necesidades de tu empresa y el
+                  alcance del trabajo. Después de la primera reunión, elaboramos una propuesta para tu negocio.</p>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span data-i18n="q8">¿Qué incluye la
+                  primera reunión y cómo se inicia el trabajo?</span><i class="pm"></i></button>
+              <div class="faq-a">
+                <p data-i18n="a8x">La primera reunión es sin costo. Nos permite conocer tu empresa, entender qué buscás
+                  mejorar y evaluar cómo podemos acompañarte.</p>
+                <p data-i18n="a8y">Después presentamos una propuesta. Una vez aprobada y formalizada la contratación,
+                  iniciamos el onboarding y el diagnóstico profundo, definimos la estrategia y pasamos a la ejecución.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- contact -->
+      <section id="contacto" class="cc-section contact-sec" aria-labelledby="cH">
+        <div class="contact-tint" aria-hidden="true"></div>
+        <div class="container rel">
+          <div class="contact-inner reveal">
+            <h2 class="h-lg" id="cH" data-i18n="cH">Tu empresa tiene un siguiente paso. Definamos cómo llegar.</h2>
+            <p class="how-sub" data-i18n="cP">Conversemos sobre tu negocio, lo que está limitando su crecimiento y lo
+              que necesita para avanzar.</p>
+            <button class="btn-violet" data-open-modal><span data-i18n="cta">Agendar diagnóstico</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg></button>
+            <span class="free-note" data-i18n="free">Primera reunión sin costo.</span>
+          </div>
+        </div>
+      </section>
+
       <!-- footer -->
-      <footer class="site-footer" id="contact">
+      <footer class="site-footer">
         <div class="container">
           <div class="footer-main">
             <div class="footer-brand">
-              <a href="#home"><img src="/scale-logo.png" alt="SCALE" /></a>
-              <p>Firma internacional de desarrollo empresarial con base en Miami. Primero la raíz, después la altura.
-              </p>
-              <button class="btn-violet sm" data-open-modal>Agendar diagnóstico
+              <a href="#inicio"><img src="/scale-logo.png" alt="SCALE" /></a>
+              <p data-i18n="ftD">Dirección y acompañamiento comercial.</p>
+              <button class="btn-violet sm" data-open-modal><span data-i18n="cta">Agendar diagnóstico</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
@@ -558,34 +706,43 @@
                 </svg></button>
             </div>
             <div>
-              <h3 class="foot-h">Navegación</h3>
+              <h3 class="foot-h" data-i18n="ftN">Navegación</h3>
               <ul class="foot-list">
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#about">Nosotros</a></li>
-                <li><a href="#process">Proceso</a></li>
-                <li><a href="#faq">Preguntas</a></li>
+                <li><a href="#inicio" data-i18n="nav1">Inicio</a></li>
+                <li><a href="#acompanamiento" data-i18n="nav2">Acompañamiento</a></li>
+                <li><a href="#equipo" data-i18n="nav3">Nosotros</a></li>
+                <li><a href="#metodo" data-i18n="nav4">Método SCALE</a></li>
+                <li><a href="#contacto" data-i18n="nav5">Contacto</a></li>
               </ul>
             </div>
             <div>
-              <h3 class="foot-h">Contacto</h3>
+              <h3 class="foot-h" data-i18n="ftS">Redes</h3>
               <ul class="foot-list">
-                <li><a class="with-ico" data-email data-email-href><svg viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      aria-hidden="true">
-                      <rect width="20" height="16" x="2" y="4" rx="2" />
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg><span data-email-text></span></a></li>
-                <li class="dim">Miami, FL</li>
+                <li><a class="with-ico" href="https://instagram.com/scaleagency_co/" target="_blank" rel="noopener"><svg
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" aria-hidden="true">
+                      <rect width="20" height="20" x="2" y="2" rx="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <path d="M17.5 6.5h.01" />
+                    </svg><span>Instagram · @scaleagency_co</span></a></li>
               </ul>
             </div>
           </div>
           <div class="footer-bottom">
-            <p>&copy; <span data-year>2026</span> SCALE. Todos los derechos reservados.</p>
+            <p data-i18n="copy">© 2026 SCALE. Todos los derechos reservados.</p>
             <p class="darker">Strategy · Content · Acquisition · Learning · Expansion</p>
           </div>
         </div>
       </footer>
     </div>
+
+    <!-- floating CTA -->
+    <button class="float-cta" id="floatCta" data-open-modal><span data-i18n="cta">Agendar diagnóstico</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg></button>
 
     <!-- contact modal -->
     <div class="modal" id="contactModal" aria-hidden="true">
@@ -594,8 +751,9 @@
         <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
           <div class="modal-head">
             <div>
-              <h2 id="modalTitle">Agende su diagnóstico</h2>
-              <p>Cuéntenos sobre su empresa y le respondemos en menos de 24 horas.</p>
+              <h2 id="modalTitle" data-i18n="cta">Agendar diagnóstico</h2>
+              <p data-i18n="cP">Conversemos sobre tu negocio, lo que está limitando su crecimiento y lo que necesita
+                para avanzar.</p>
             </div>
             <button class="modal-x" data-close-modal aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -606,16 +764,17 @@
           </div>
           <div class="modal-body">
             <form id="contactForm" class="form">
-              <div><label>Nombre *</label><input type="text" name="name" required placeholder="Su nombre" /></div>
-              <div><label>Correo electrónico *</label><input type="email" name="email" required
-                  placeholder="su@correo.com" /></div>
-              <div><label>Sobre su empresa *</label><textarea name="message" required rows="4"
-                  placeholder="Qué hace su empresa, qué quiere lograr y qué la frena hoy..."></textarea></div>
+              <div><label data-i18n="fName">Nombre *</label><input type="text" name="name" required /></div>
+              <div><label data-i18n="fEmail">Correo electrónico *</label><input type="email" name="email" required
+                  placeholder="nombre@empresa.com" /></div>
+              <div><label data-i18n="fMsg">Sobre tu empresa *</label><textarea name="message" required
+                  rows="4"></textarea></div>
               <button type="submit" class="btn-violet full"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="m22 2-7 20-4-9-9-4Z" />
                   <path d="M22 2 11 13" />
-                </svg>Enviar mensaje</button>
+                </svg><span data-i18n="fSend">Enviar mensaje</span></button>
+              <p class="free-note" data-i18n="free">Primera reunión sin costo.</p>
             </form>
           </div>
         </div>
